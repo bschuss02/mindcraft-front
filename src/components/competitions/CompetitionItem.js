@@ -15,10 +15,12 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { formatDate } from "../../util/date/formatDate"
 import { CompetitionContext } from "../../context/CompetitionContext"
+import { DisplayContext } from "../../context/DisplayContext"
 
 function CompetitionItem({ competitionId }) {
 	const navigation = useNavigation()
 	const { competitionsMap } = useContext(CompetitionContext)
+	const { setCurrentCompetitionId } = useContext(DisplayContext)
 	const competitionData = competitionsMap[competitionId]
 	if (!competitionData) return null
 	const {
@@ -34,11 +36,15 @@ function CompetitionItem({ competitionId }) {
 		resources,
 		createdAt,
 	} = competitionData
+
+	function handleNavigateToCompetition() {
+		setCurrentCompetitionId(competitionId)
+		navigation.navigate("competitions", { screen: "viewCompetitionTabNav" })
+	}
+
 	return (
 		<Pressable
-			onPress={() =>
-				navigation.navigate("competitions", { screen: "viewCompetitionTabNav" })
-			}
+			onPress={handleNavigateToCompetition}
 			_hover={{ bg: "c1.800" }}
 			p="2"
 			borderRadius="10"

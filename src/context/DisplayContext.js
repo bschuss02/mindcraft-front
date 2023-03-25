@@ -9,14 +9,17 @@ const DisplayContext = createContext()
 function DisplayContextProvider({ children }) {
 	const [isStartupLoading, setIsStartupLoading] = useState(false)
 	const [message, setMessage] = useState("")
+	const [currentCompetitionId, setCurrentCompetitionId] = useState(1)
 
 	const stateVars = {
 		message,
 		isStartupLoading,
+		currentCompetitionId,
 	}
 	const stateSetters = {
 		setMessage,
 		setIsStartupLoading,
+		setCurrentCompetitionId,
 	}
 	return (
 		<DisplayContext.Provider value={{ ...stateVars, ...stateSetters }}>

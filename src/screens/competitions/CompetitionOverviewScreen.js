@@ -7,7 +7,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 function CompetitionOverviewScreen() {
 	const navigation = useNavigation()
 	return (
-		<Box variant="screen" mt="12">
+		<Box variant="screen" mt="33">
 			<Text>CompetitionOverviewScreen</Text>
 			<Button
 				onPress={() => {

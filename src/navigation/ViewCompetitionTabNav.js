@@ -12,6 +12,7 @@ import { CompetitionRulesScreen } from "../screens/competitions/CompetitionRules
 import { CompetitionResourcesScreen } from "../screens/competitions/CompetitionResourcesScreen"
 import { CompetitionSubmissionsScreen } from "../screens/competitions/CompetitionSubmissionsScreen"
 import { JoinCompetitionScreen } from "../screens/competitions/JoinCompetitionScreen"
+import { ViewCompetitionTabNavBar } from "../components/bars/ViewCompetitionTabNavBar"
 
 const Tab = createBottomTabNavigator()
 
@@ -19,7 +20,12 @@ function ViewCompetitionTabNav() {
 	return (
 		<View style={{ flex: 1, flexDirection: "column" }}>
 			<Tab.Navigator
-				tabBar={(props) => <CustomTabBar {...props} />}
+				tabBar={(props) => (
+					<CustomTabBar
+						{...props}
+						topComponent={<ViewCompetitionTabNavBar />}
+					/>
+				)}
 				screenOptions={{
 					headerShown: false,
 				}}

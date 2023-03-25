@@ -52,7 +52,7 @@ function CompetitionsScreen() {
 					<Button
 						onPress={() =>
 							navigation.navigate("competitions", {
-								screen: "viewCompetitionTabNav",
+								screen: "createCompetitionScreen",
 							})
 						}
 						leftIcon={<Icon as={Ionicons} name="add" color="c1.50" size="5" />}
