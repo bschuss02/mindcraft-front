@@ -17,7 +17,6 @@ import { formatDate } from "../../util/date/formatDate"
 
 function CompetitionItem({ competitionData }) {
 	const navigation = useNavigation()
-	console.log("CompetitionItem", competitionData)
 	const {
 		_id,
 		organizerId,
@@ -32,7 +31,14 @@ function CompetitionItem({ competitionData }) {
 		createdAt,
 	} = competitionData
 	return (
-		<Pressable _hover={{ bg: "c1.800" }} p="2" borderRadius="10">
+		<Pressable
+			onPress={() =>
+				navigation.navigate("competitions", { screen: "viewCompetitionTabNav" })
+			}
+			_hover={{ bg: "c1.800" }}
+			p="2"
+			borderRadius="10"
+		>
 			<HStack justifyContent="space-between" mx="4">
 				<HStack space="3">
 					<Box>
