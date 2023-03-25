@@ -11,10 +11,14 @@ function ToolsScreen() {
 		{
 			title: "Tool 1",
 			subtitle: "This is tool 1",
+			coverPhoto: "https://picsum.photos/id/102/200/200",
+			url: "https://www.google.com",
 		},
 		{
 			title: "Tool 2",
 			subtitle: "This is a description of tool 2",
+			coverPhoto: "https://picsum.photos/id/101/200/200",
+			url: "https://www.nytimes.com",
 		},
 	]
 
@@ -24,13 +28,14 @@ function ToolsScreen() {
 				<VStack space="1" maxWidth="500px">
 					<Heading fontSize="30px">Tools</Heading>
 					<Heading fontSize="14px">
-						Here are some models to kick off your gAI adventure!
+						Here are some models to kick off your gAI adventure! Using AI in
+						your submissions isn't required but it can help you win!
 					</Heading>
 				</VStack>
 			</HStack>
-			<VStack space="1" mt="5">
-				{DATA.map((toolId, index) => (
-					<ToolItem key={index.toString()} toolId={toolId} />
+			<VStack space="1" mt="4">
+				{DATA.map((toolData, index) => (
+					<ToolItem key={index.toString()} toolData={toolData} />
 				))}
 			</VStack>
 		</Box>
