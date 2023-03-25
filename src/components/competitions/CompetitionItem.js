@@ -17,7 +17,7 @@ import { formatDate } from "../../util/date/formatDate"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { DisplayContext } from "../../context/DisplayContext"
 
-function CompetitionItem({ competitionId }) {
+function CompetitionItem({ competitionId, showButtons = false }) {
 	const navigation = useNavigation()
 	const { competitionsMap } = useContext(CompetitionContext)
 	const { setCurrentCompetitionId } = useContext(DisplayContext)
@@ -69,9 +69,25 @@ function CompetitionItem({ competitionId }) {
 						</Text>
 					</VStack>
 				</HStack>
-				<VStack>
-					<Heading fontSize="20px">{`$${prizeMoney}`}</Heading>
-					<Text>{formatDate(deadline)}</Text>
+				<VStack alignItems="flex-end" space="4">
+					<VStack alignItems="flex-end">
+						<Heading fontSize="20px">{`$${prizeMoney}`}</Heading>
+						<Text>{formatDate(deadline)}</Text>
+					</VStack>
+					{showButtons && (
+						<VStack space="3">
+							<VStack alignItems="flex-end">
+								<Button>
+									<Text>Review Submissions</Text>
+								</Button>
+							</VStack>
+							<VStack alignItems="flex-end">
+								<Button>
+									<Text>Delete Competitions</Text>
+								</Button>
+							</VStack>
+						</VStack>
+					)}
 				</VStack>
 			</HStack>
 		</Pressable>

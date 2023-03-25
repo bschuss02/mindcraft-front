@@ -40,14 +40,17 @@ const CompetitionContext = createContext()
 function CompetitionContextProvider({ children }) {
 	const [competitionsMap, setCompetitionsMap] = useState(dummyCompetitionData)
 	const [competitionFeedIds, setCompetitionFeedIds] = useState([1, 2])
+	const [myCompetitionIds, setMyCompetitionIds] = useState([1, 2])
 
 	const stateVars = {
 		competitionsMap,
 		competitionFeedIds,
+		myCompetitionIds,
 	}
 	const stateSetters = {
 		setCompetitionsMap,
 		setCompetitionFeedIds,
+		setMyCompetitionIds,
 	}
 	return (
 		<CompetitionContext.Provider value={{ ...stateVars, ...stateSetters }}>
