@@ -7,10 +7,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { HomeScreen } from "../screens/HomeScreen"
 import { Screen2 } from "../screens/Screen2"
 import { CustomTabBar } from "../components/navigation/CustomTabBar"
+import { CompetitionOverviewScreen } from "../screens/competitions/CompetitionOverviewScreen"
 
 const Tab = createBottomTabNavigator()
 
-function ViewCompetitionsTabNav() {
+function ViewCompetitionTabNav() {
 	return (
 		<View style={{ flex: 1, flexDirection: "column" }}>
 			<Tab.Navigator
@@ -19,18 +20,14 @@ function ViewCompetitionsTabNav() {
 					headerShown: false,
 				}}
 			>
-				{/* <Tab.Screen
-					name="HomeScreen"
-					component={HomeScreen}
-				/>
 				<Tab.Screen
-					name="Screen2"
-					component={Screen2}
-					options={{ tabBarIcon: "book" }}
-				/> */}
+					name="competitionOverviewScreen"
+					component={CompetitionOverviewScreen}
+					options={{ tabBarLabel: "Overview" }}
+				/>
 			</Tab.Navigator>
 		</View>
 	)
 }
 
-export { ViewCompetitionsTabNav }
+export { ViewCompetitionTabNav }

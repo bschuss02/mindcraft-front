@@ -10,7 +10,8 @@ import SignupScreen from "../screens/SignupScreen"
 import { LoginScreen } from "../screens/LoginScreen"
 import { ProfileScreen } from "../screens/ProfileScreen"
 import { UserContext } from "../context/UserContext"
-import { CompetitionsScreen } from "../screens/CompetitionsScreen"
+import { CompetitionsScreen } from "../screens/competitions/CompetitionsScreen"
+import { ViewCompetitionTabNav } from "./ViewCompetitionTabNav"
 
 const Stack = createStackNavigator()
 
@@ -19,6 +20,10 @@ function CompetitionsStackNav() {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="competitionsScreen" component={CompetitionsScreen} />
+			<Stack.Screen
+				name="viewCompetitionTabNav"
+				component={ViewCompetitionTabNav}
+			/>
 		</Stack.Navigator>
 	)
 }

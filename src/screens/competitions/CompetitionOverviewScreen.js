@@ -4,13 +4,13 @@ import { Box, Text, Button, HStack, VStack, Icon } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 
-function CompetitionsScreen() {
+function CompetitionOverviewScreen() {
 	const navigation = useNavigation()
 	return (
 		<Box variant="screen">
-			<Text>CompetitionsScreen</Text>
+			<Text>CompetitionOverviewScreen</Text>
 		</Box>
 	)
 }
 
-export { CompetitionsScreen }
+export { CompetitionOverviewScreen }
