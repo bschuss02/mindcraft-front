@@ -19,6 +19,7 @@ import { CustomHeader } from "../components/navigation/CustomHeader"
 import { HomeTabNav } from "./HomeTabNav"
 import { ProfileStackNav } from "./ProfileStackNav"
 import { useStartup } from "../util/api/startup/useStartup"
+import { CompetitionsStackNav } from "./CompetitionsStackNav"
 
 const Drawer = createDrawerNavigator()
 
@@ -33,17 +34,8 @@ function DrawerNav() {
 			<Drawer.Navigator
 				screenOptions={{
 					headerShown: false,
-					// header: ({ navigation, route, options }) => (
-					// 	<CustomHeader
-					// 		navigation={navigation}
-					// 		route={route}
-					// 		options={options}
-					// 	/>
-					// ),
-					// drawerType: dimensions.width >= 900 ? "permanent" : "front",
 					drawerType: "permanent",
 					drawerStyle: {
-						// width: dimensions.width >= 900 ? "20%" : "100%",
 						width: "250px",
 						borderRightWidth: 1,
 						borderRightColor: "#555",
@@ -54,17 +46,27 @@ function DrawerNav() {
 				initialRouteName="Profile"
 			>
 				<Drawer.Screen
-					name="Home"
-					component={HomeTabNav}
+					name="competitions"
+					component={CompetitionsStackNav}
 					options={{
-						drawerLabel: "Home",
-						drawerIcon: "home",
+						drawerLabel: "Competitions",
+						drawerIcon: "trophy-outline",
 					}}
 				/>
 				<Drawer.Screen
-					name="Profile"
+					name="tools"
 					component={ProfileStackNav}
-					options={{ drawerLabel: "Profile", drawerIcon: "person" }}
+					options={{ drawerLabel: "Tools", drawerIcon: "hammer-outline" }}
+				/>
+				<Drawer.Screen
+					name="learn"
+					component={ProfileStackNav}
+					options={{ drawerLabel: "Learn", drawerIcon: "school-outline" }}
+				/>
+				<Drawer.Screen
+					name="profile"
+					component={ProfileStackNav}
+					options={{ drawerLabel: "Profile", drawerIcon: "person-outline" }}
 				/>
 			</Drawer.Navigator>
 		</Box>
