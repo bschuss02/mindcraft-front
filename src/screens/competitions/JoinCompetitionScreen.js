@@ -62,12 +62,18 @@ function JoinCompetitionScreen() {
 							</VStack>
 						)}
 						<Button
+							w="150px"
 							onPress={handleAddNewFiles}
 							leftIcon={
 								<Icon as={Ionicons} name="add" color="c1.900" size="5" />
 							}
 						>
 							<Text>Add New File</Text>
+						</Button>
+					</VStack>
+					<VStack alignItems="center">
+						<Button>
+							<Text>Submit to Competition</Text>
 						</Button>
 					</VStack>
 				</VStack>
