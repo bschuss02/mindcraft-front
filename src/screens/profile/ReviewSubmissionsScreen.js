@@ -51,6 +51,7 @@ function ReviewSubmissionsScreen() {
 							<SubmissionItem
 								key={index.toString()}
 								submissionId={submissionId}
+								selectingWinner
 							/>
 						))}
 					</VStack>

@@ -10,6 +10,7 @@ import {
 	Pressable,
 	Image,
 	Heading,
+	Checkbox,
 } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
@@ -24,7 +25,6 @@ function SubmissionItem({
 	showButtons = false,
 	showCompetitionDetails = false,
 	selectingWinner = false,
-	onSelectWinner = null,
 }) {
 	const navigation = useNavigation()
 	const { submissionsMap } = useContext(SubmissionContext)
@@ -107,6 +107,14 @@ function SubmissionItem({
 								<Text>Remove Submission</Text>
 							</Button>
 						</VStack>
+					</VStack>
+				)}
+				{selectingWinner && (
+					<VStack alignItems="flex-end" space="2">
+						<HStack space="2" alignItems="center">
+							<Heading fontSize="17px">Choose winner</Heading>
+							<Checkbox />
+						</HStack>
 					</VStack>
 				)}
 			</HStack>
