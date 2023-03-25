@@ -31,7 +31,7 @@ function MindcraftApp() {
 		<RootContextProvider>
 			<NavigationContainer
 				documentTitle={{
-					formatter: () => `Basic App`,
+					formatter: () => `MindCraft`,
 				}}
 				theme={MyTheme}
 				linking={linking}

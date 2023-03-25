@@ -51,7 +51,7 @@ const themeConfig = {
 				px: "2",
 				py: "12px",
 				keyboardAppearance: "dark",
-				maxW: "600px",
+				maxW: "650px",
 			},
 		},
 		Button: {
