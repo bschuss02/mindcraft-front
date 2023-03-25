@@ -8,6 +8,10 @@ import { HomeScreen } from "../screens/HomeScreen"
 import { Screen2 } from "../screens/Screen2"
 import { CustomTabBar } from "../components/navigation/CustomTabBar"
 import { CompetitionOverviewScreen } from "../screens/competitions/CompetitionOverviewScreen"
+import { CompetitionRulesScreen } from "../screens/competitions/CompetitionRulesScreen"
+import { CompetitionResourcesScreen } from "../screens/competitions/CompetitionResourcesScreen"
+import { CompetitionSubmissionsScreen } from "../screens/competitions/CompetitionSubmissionsScreen"
+import { JoinCompetitionScreen } from "../screens/competitions/JoinCompetitionScreen"
 
 const Tab = createBottomTabNavigator()
 
@@ -24,6 +28,26 @@ function ViewCompetitionTabNav() {
 					name="competitionOverviewScreen"
 					component={CompetitionOverviewScreen}
 					options={{ tabBarLabel: "Overview" }}
+				/>
+				<Tab.Screen
+					name="competitionRulesScreen"
+					component={CompetitionRulesScreen}
+					options={{ tabBarLabel: "Rules" }}
+				/>
+				<Tab.Screen
+					name="competitionResourcesScreen"
+					component={CompetitionResourcesScreen}
+					options={{ tabBarLabel: "Resources" }}
+				/>
+				<Tab.Screen
+					name="competitionSubmissionsScreen"
+					component={CompetitionSubmissionsScreen}
+					options={{ tabBarLabel: "Submissions" }}
+				/>
+				<Tab.Screen
+					name="joinCompetitionScreen"
+					component={JoinCompetitionScreen}
+					options={{ tabBarLabel: "Join Competition", tabBarIcon: "add" }}
 				/>
 			</Tab.Navigator>
 		</View>
