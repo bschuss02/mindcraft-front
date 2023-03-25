@@ -8,7 +8,10 @@ const dummySubmissionData = {
 	10: {
 		_id: 10,
 		competitionId: 1,
-		creator: 100,
+		creator: {
+			username: "user02",
+			pfp: "https://picsum.photos/100/100",
+		},
 		files: [
 			{
 				fileName: "file10.jpg",
@@ -25,7 +28,10 @@ const dummySubmissionData = {
 	11: {
 		_id: 11,
 		competitionId: 1,
-		creator: 100,
+		creator: {
+			username: "user02",
+			pfp: "https://picsum.photos/100/100",
+		},
 		files: [
 			{
 				fileName: "file1.jpg",

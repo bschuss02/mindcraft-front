@@ -19,7 +19,13 @@ import { formatDate } from "../../util/date/formatDate"
 import { FileItem } from "./FileItem"
 import { mapStatus } from "../../util/status/mapStatus"
 
-function SubmissionItem({ submissionId, showButtons = false }) {
+function SubmissionItem({
+	submissionId,
+	showButtons = false,
+	showCompetitionDetails = false,
+	selectingWinner = false,
+	onSelectWinner = null,
+}) {
 	const navigation = useNavigation()
 	const { submissionsMap } = useContext(SubmissionContext)
 	const { competitionsMap } = useContext(CompetitionContext)
@@ -47,22 +53,33 @@ function SubmissionItem({ submissionId, showButtons = false }) {
 					<Box>
 						<Image
 							alt="competition cover image"
-							source={{ uri: coverImage }}
+							source={{
+								uri: showCompetitionDetails ? coverImage : creator.pfp,
+							}}
 							w="20"
 							h="20"
-							borderRadius="10"
+							borderRadius={showCompetitionDetails ? "10" : "100"}
 						/>
 					</Box>
 					<VStack maxW="500px" space="4">
-						<VStack>
-							<Heading fontSize="15">Competition:</Heading>
-							<Text ml="4" numberOfLines={1} mt="2">
-								{title}
-							</Text>
-							<Text ml="4" numberOfLines={1}>
-								{subtitle}
-							</Text>
-						</VStack>
+						{showCompetitionDetails && (
+							<VStack>
+								<Heading fontSize="15">Competition:</Heading>
+								<Text ml="4" numberOfLines={1} mt="2">
+									{title}
+								</Text>
+								<Text ml="4" numberOfLines={1}>
+									{subtitle}
+								</Text>
+							</VStack>
+						)}
+						{!showCompetitionDetails && (
+							<VStack>
+								<Heading fontSize="15">
+									{`Created by: ${creator.username}`}
+								</Heading>
+							</VStack>
+						)}
 						<VStack>
 							<Heading fontSize="15">Submitted Files:</Heading>
 							<VStack ml="4" space="2" mt="2">

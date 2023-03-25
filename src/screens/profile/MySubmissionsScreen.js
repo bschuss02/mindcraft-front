@@ -26,6 +26,7 @@ function MySubmissionsScreen() {
 							key={index.toString()}
 							submissionId={submissionId}
 							showButtons
+							showCompetitionDetails
 						/>
 					))}
 				</VStack>
