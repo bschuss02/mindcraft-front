@@ -10,6 +10,7 @@ import {
 	ScrollView,
 	Heading,
 	TextArea,
+	Checkbox,
 } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
@@ -70,6 +71,32 @@ function JoinCompetitionScreen() {
 						>
 							<Text>Add New File</Text>
 						</Button>
+					</VStack>
+					<VStack space="2">
+						<Heading fontSize="30px">Hide Submission</Heading>
+						<HStack space="2">
+							<Checkbox
+								value={true}
+								accessibilityLabel="Hide submission from being viewed by other competitors"
+							/>
+							<Text>
+								Check the box to hide you submission from being viewed by other
+								competitors
+							</Text>
+						</HStack>
+					</VStack>
+					<VStack space="2">
+						<Heading fontSize="30px">Agree to Terms and Conditions</Heading>
+						<HStack space="2">
+							<Checkbox
+								value={true}
+								accessibilityLabel="Agree to terms and conditions"
+							/>
+							<Text>
+								Check the box to be bound by the competition rules and
+								MindCraft's terms and conditions
+							</Text>
+						</HStack>
 					</VStack>
 					<VStack alignItems="center">
 						<Button>
