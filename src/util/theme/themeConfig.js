@@ -14,7 +14,9 @@ const themeConfig = {
 				color: "c1.50",
 			},
 		},
-		Heading: { defaultProps: { fontSize: "15px", color: "c1.50" } },
+		Heading: {
+			defaultProps: { fontSize: "30px", color: "c1.50" },
+		},
 		Input: {
 			defaultProps: {
 				selectionColor: "c1.50",
