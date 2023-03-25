@@ -22,21 +22,11 @@ function JoinCompetitionScreen() {
 	const { selectedFiles, setSelectedFiles } = useContext(DisplayContext)
 
 	async function handleAddNewFiles() {
-		console.log("addNewFiles")
-		const result = await DocumentPicker.getDocumentAsync({
-			multiple: true,
-		})
-		if (type === "success") {
-			const files = uri.map((fileUri, index) => ({
-				uri: fileUri,
-				name: name[index],
-			}))
-			setSelectedFiles(files)
+		const result = await DocumentPicker.getDocumentAsync()
+		if (result.type === "success") {
+			setSelectedFiles([...selectedFiles, result])
 		}
 	}
-
-	console.log("selectedFiles", selectedFiles)
-	console.log("Object.keys(selectedFiles)", Object.keys(selectedFiles))
 
 	return (
 		<Box variant="screen" mt="33">
@@ -60,13 +50,17 @@ function JoinCompetitionScreen() {
 								etc.
 							</Heading>
 						</VStack>
-						{/* {selectedFiles.length !== 0 && (
-							<VStack>
+						{selectedFiles.length !== 0 && (
+							<VStack space="1">
 								{selectedFiles.map((fileData, index) => (
-									<UploadFileItem key={index.toString()} fileData={fileData} />
+									<UploadFileItem
+										key={index.toString()}
+										index={index}
+										fileData={fileData}
+									/>
 								))}
 							</VStack>
-						)} */}
+						)}
 						<Button
 							onPress={handleAddNewFiles}
 							leftIcon={
