@@ -17,7 +17,12 @@ function ProfileTabNav() {
 	return (
 		<View style={{ flex: 1, flexDirection: "column" }}>
 			<Tab.Navigator
-				tabBar={(props) => <CustomTabBar {...props} />}
+				tabBar={(props) => (
+					<CustomTabBar
+						{...props}
+						topComponent={<Box w="200px" h="100px" bg="red.500" />}
+					/>
+				)}
 				screenOptions={{
 					headerShown: false,
 				}}

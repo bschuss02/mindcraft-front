@@ -4,7 +4,7 @@ import { Box, Text, Button, HStack, VStack, Icon, Pressable } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 
-function CustomTabBar({ state, descriptors, navigation }) {
+function CustomTabBar({ state, descriptors, navigation, topComponent }) {
 	return (
 		<Box
 			bg="c1.900"
@@ -14,6 +14,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
 			borderBottomColor="#555"
 			borderBottomWidth={1}
 		>
+			{topComponent}
 			<HStack space="5" p="2" alignItems="center">
 				{state.routes.map((route, index) => {
 					const { options } = descriptors[route.key]
