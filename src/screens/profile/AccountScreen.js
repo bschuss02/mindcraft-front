@@ -15,7 +15,7 @@ function AccountScreen() {
 		try {
 			await AsyncStorage.removeItem("authToken")
 			setCurrentUser(null)
-			navigation.navigate("Profile", { screen: "signupScreen" })
+			navigation.navigate("profile", { screen: "signupScreen" })
 		} catch (error) {
 			console.error("Error signing out...: ", error)
 		}
@@ -24,9 +24,7 @@ function AccountScreen() {
 	if (currentUser) {
 		const { username } = currentUser
 		return (
-			<Box variant="screen" mt="12">
-				<Text>ProfileScreen</Text>
-				<Text>Current user username: {username}</Text>
+			<Box variant="screen" mt="26">
 				<Button onPress={handleSignOut}>
 					<Text>Sign Out</Text>
 				</Button>

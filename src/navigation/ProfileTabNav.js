@@ -10,6 +10,7 @@ import { CustomTabBar } from "../components/navigation/CustomTabBar"
 import { AccountScreen } from "../screens/profile/AccountScreen"
 import { MySubmissionsScreen } from "../screens/profile/MySubmissionsScreen"
 import { MyCompetitionsScreen } from "../screens/profile/MyCompetitionsScreen"
+import { ProfileTabNavBar } from "../components/bars/ProfileTabNavBar"
 
 const Tab = createBottomTabNavigator()
 
@@ -18,10 +19,7 @@ function ProfileTabNav() {
 		<View style={{ flex: 1, flexDirection: "column" }}>
 			<Tab.Navigator
 				tabBar={(props) => (
-					<CustomTabBar
-						{...props}
-						topComponent={<Box w="200px" h="100px" bg="red.500" />}
-					/>
+					<CustomTabBar {...props} topComponent={<ProfileTabNavBar />} />
 				)}
 				screenOptions={{
 					headerShown: false,
