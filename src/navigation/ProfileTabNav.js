@@ -8,6 +8,8 @@ import { HomeScreen } from "../screens/HomeScreen"
 import { Screen2 } from "../screens/Screen2"
 import { CustomTabBar } from "../components/navigation/CustomTabBar"
 import { AccountScreen } from "../screens/profile/AccountScreen"
+import { MySubmissionsScreen } from "../screens/profile/MySubmissionsScreen"
+import { MyCompetitionsScreen } from "../screens/profile/MyCompetitionsScreen"
 
 const Tab = createBottomTabNavigator()
 
@@ -23,7 +25,17 @@ function ProfileTabNav() {
 				<Tab.Screen
 					name="accountScreen"
 					component={AccountScreen}
-					// options={{ tabBarIcon: "list" }}
+					options={{ tabBarLabel: "Account" }}
+				/>
+				<Tab.Screen
+					name="mySubmissionsScreen"
+					component={MySubmissionsScreen}
+					options={{ tabBarLabel: "My Submissions" }}
+				/>
+				<Tab.Screen
+					name="myCompetitionsScreen"
+					component={MyCompetitionsScreen}
+					options={{ tabBarLabel: "My Competitions" }}
 				/>
 			</Tab.Navigator>
 		</View>
