@@ -12,6 +12,7 @@ import { ProfileScreen } from "../screens/ProfileScreen"
 import { UserContext } from "../context/UserContext"
 import { CompetitionsScreen } from "../screens/competitions/CompetitionsScreen"
 import { ViewCompetitionTabNav } from "./ViewCompetitionTabNav"
+import { CreateCompetitionScreen } from "../screens/competitions/CreateCompetitionScreen"
 
 const Stack = createStackNavigator()
 
@@ -20,6 +21,10 @@ function CompetitionsStackNav() {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="competitionsScreen" component={CompetitionsScreen} />
+			<Stack.Screen
+				name="createCompetitionScreen"
+				component={CreateCompetitionScreen}
+			/>
 			<Stack.Screen
 				name="viewCompetitionTabNav"
 				component={ViewCompetitionTabNav}

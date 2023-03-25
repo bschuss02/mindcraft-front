@@ -20,6 +20,8 @@ import { HomeTabNav } from "./HomeTabNav"
 import { ProfileStackNav } from "./ProfileStackNav"
 import { useStartup } from "../util/api/startup/useStartup"
 import { CompetitionsStackNav } from "./CompetitionsStackNav"
+import { ToolsScreen } from "../screens/tools/ToolsScreen"
+import { LearnScreen } from "../screens/learn/LearnScreen"
 
 const Drawer = createDrawerNavigator()
 
@@ -55,12 +57,12 @@ function DrawerNav() {
 				/>
 				<Drawer.Screen
 					name="tools"
-					component={ProfileStackNav}
+					component={ToolsScreen}
 					options={{ drawerLabel: "Tools", drawerIcon: "hammer-outline" }}
 				/>
 				<Drawer.Screen
 					name="learn"
-					component={ProfileStackNav}
+					component={LearnScreen}
 					options={{ drawerLabel: "Learn", drawerIcon: "school-outline" }}
 				/>
 				<Drawer.Screen

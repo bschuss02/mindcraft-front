@@ -4,33 +4,23 @@ import { Box, Text, Button, HStack, VStack, Icon } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 
-function CompetitionsScreen() {
+function CreateCompetitionScreen() {
 	const navigation = useNavigation()
 	return (
 		<Box variant="screen">
-			<Text>CompetitionsScreen</Text>
+			<Text>CreateCompetitionScreen</Text>
 			<Button
 				onPress={() => {
 					console.log("navigating")
 					navigation.navigate("competitions", {
-						screen: "viewCompetitionTabNav",
+						screen: "competitionsScreen",
 					})
 				}}
 			>
-				<Text>Navigate to ViewCompetitionTabNav</Text>
-			</Button>
-			<Button
-				onPress={() => {
-					console.log("navigating")
-					navigation.navigate("competitions", {
-						screen: "createCompetitionScreen",
-					})
-				}}
-			>
-				<Text>Navigate to CreateCompetitionScreen</Text>
+				<Text>Navigate back to competitionScreen</Text>
 			</Button>
 		</Box>
 	)
 }
 
-export { CompetitionsScreen }
+export { CreateCompetitionScreen }
