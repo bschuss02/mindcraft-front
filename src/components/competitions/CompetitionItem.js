@@ -14,9 +14,13 @@ import {
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { formatDate } from "../../util/date/formatDate"
+import { CompetitionContext } from "../../context/CompetitionContext"
 
-function CompetitionItem({ competitionData }) {
+function CompetitionItem({ competitionId }) {
 	const navigation = useNavigation()
+	const { competitionsMap } = useContext(CompetitionContext)
+	const competitionData = competitionsMap[competitionId]
+	if (!competitionData) return null
 	const {
 		_id,
 		organizerId,

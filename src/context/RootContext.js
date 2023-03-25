@@ -5,12 +5,15 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { UserContextProvider } from "./UserContext"
 import { DisplayContextProvider } from "./DisplayContext"
+import { CompetitionContextProvider } from "./CompetitionContext"
 
 function RootContextProvider({ children }) {
 	return (
-		<DisplayContextProvider>
-			<UserContextProvider>{children}</UserContextProvider>
-		</DisplayContextProvider>
+		<CompetitionContextProvider>
+			<DisplayContextProvider>
+				<UserContextProvider>{children}</UserContextProvider>
+			</DisplayContextProvider>
+		</CompetitionContextProvider>
 	)
 }
 
