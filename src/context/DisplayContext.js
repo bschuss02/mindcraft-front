@@ -10,16 +10,19 @@ function DisplayContextProvider({ children }) {
 	const [isStartupLoading, setIsStartupLoading] = useState(false)
 	const [message, setMessage] = useState("")
 	const [currentCompetitionId, setCurrentCompetitionId] = useState(1)
+	const [selectedFiles, setSelectedFiles] = useState([])
 
 	const stateVars = {
 		message,
 		isStartupLoading,
 		currentCompetitionId,
+		selectedFiles,
 	}
 	const stateSetters = {
 		setMessage,
 		setIsStartupLoading,
 		setCurrentCompetitionId,
+		setSelectedFiles,
 	}
 	return (
 		<DisplayContext.Provider value={{ ...stateVars, ...stateSetters }}>
