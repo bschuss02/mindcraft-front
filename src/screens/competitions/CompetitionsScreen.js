@@ -9,9 +9,9 @@ const dummyCompetitionData = [
 	{
 		_id: 1,
 		organizerId: 100,
-		coverImage: "https://picsum.photos/200/300",
-		title: "Competition 1",
-		subtitle: "This is a description of competition 1",
+		coverImage: "https://picsum.photos/200/200",
+		title: "Competition 1".repeat(10),
+		subtitle: "This is a description of competition 1".repeat(10),
 		overview: "This is an overview of competition 1",
 		prizeMoney: 1000,
 		deadline: new Date("2023-3-30"),
@@ -22,7 +22,7 @@ const dummyCompetitionData = [
 	{
 		_id: 2,
 		organizerId: 100,
-		coverImage: "https://picsum.photos/200/300",
+		coverImage: "https://picsum.photos/200/200",
 		title: "Competition 2",
 		subtitle: "This is a description of competition 2",
 		overview: "This is an overview of competition 2",
@@ -60,8 +60,11 @@ function CompetitionsScreen() {
 				</VStack>
 			</HStack>
 			<VStack space="1" mt="5">
-				{dummyCompetitionData.map((competition) => (
-					<CompetitionItem key={competition._id} competition={competition} />
+				{dummyCompetitionData.map((competition, index) => (
+					<CompetitionItem
+						key={index.toString()}
+						competitionData={competition}
+					/>
 				))}
 			</VStack>
 			{/* <Text>CompetitionsScreen</Text>
