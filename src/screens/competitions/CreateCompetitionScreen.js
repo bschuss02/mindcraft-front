@@ -11,7 +11,6 @@ function CreateCompetitionScreen() {
 			<Text>CreateCompetitionScreen</Text>
 			<Button
 				onPress={() => {
-					console.log("navigating")
 					navigation.navigate("competitions", {
 						screen: "competitionsScreen",
 					})

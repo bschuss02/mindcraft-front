@@ -16,6 +16,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { SubmissionContext } from "../../context/SubmissionContext"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { formatDate } from "../../util/date/formatDate"
+import { FileItem } from "./FileItem"
 
 function SubmissionItem({ submissionId }) {
 	const navigation = useNavigation()
@@ -44,6 +45,7 @@ function SubmissionItem({ submissionId }) {
 				<HStack space="4">
 					<Box>
 						<Image
+							alt="competition cover image"
 							source={{ uri: coverImage }}
 							w="20"
 							h="20"
@@ -53,7 +55,7 @@ function SubmissionItem({ submissionId }) {
 					<VStack maxW="500px" space="4">
 						<VStack>
 							<Heading fontSize="15">Competition:</Heading>
-							<Text ml="4" numberOfLines={1}>
+							<Text ml="4" numberOfLines={1} mt="2">
 								{title}
 							</Text>
 							<Text ml="4" numberOfLines={1}>
@@ -61,7 +63,12 @@ function SubmissionItem({ submissionId }) {
 							</Text>
 						</VStack>
 						<VStack>
-							<Heading fontSize="15">Files:</Heading>
+							<Heading fontSize="15">Submitted Files:</Heading>
+							<VStack ml="4" space="2" mt="2">
+								{files.map((file, index) => (
+									<FileItem key={index.toString()} fileData={file} />
+								))}
+							</VStack>
 						</VStack>
 					</VStack>
 				</HStack>

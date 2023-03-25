@@ -53,6 +53,7 @@ function CompetitionItem({ competitionId }) {
 				<HStack space="3">
 					<Box>
 						<Image
+							alt="competition cover image"
 							source={{ uri: coverImage }}
 							w="20"
 							h="20"

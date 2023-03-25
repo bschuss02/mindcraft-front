@@ -69,27 +69,6 @@ function CompetitionsScreen() {
 					/>
 				))}
 			</VStack>
-			{/* <Text>CompetitionsScreen</Text>
-			<Button
-				onPress={() => {
-					console.log("navigating")
-					navigation.navigate("competitions", {
-						screen: "viewCompetitionTabNav",
-					})
-				}}
-			>
-				<Text>Navigate to ViewCompetitionTabNav</Text>
-			</Button>
-			<Button
-				onPress={() => {
-					console.log("navigating")
-					navigation.navigate("competitions", {
-						screen: "createCompetitionScreen",
-					})
-				}}
-			>
-				<Text>Navigate to CreateCompetitionScreen</Text>
-			</Button> */}
 		</Box>
 	)
 }

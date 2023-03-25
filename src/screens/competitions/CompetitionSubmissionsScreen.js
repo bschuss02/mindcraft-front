@@ -27,7 +27,6 @@ function CompetitionSubmissionsScreen() {
 		createdAt,
 		submissionIds,
 	} = competitionData
-	console.log("submissionIds", submissionIds)
 	return (
 		<Box variant="screen" mt="33">
 			<VStack>
