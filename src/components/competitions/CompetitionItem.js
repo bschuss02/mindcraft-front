@@ -20,7 +20,10 @@ import { DisplayContext } from "../../context/DisplayContext"
 function CompetitionItem({ competitionId, showButtons = false }) {
 	const navigation = useNavigation()
 	const { competitionsMap } = useContext(CompetitionContext)
-	const { setCurrentCompetitionId } = useContext(DisplayContext)
+	const {
+		setCurrentCompetitionId,
+		setCurrentRevieweingCompetitionId,
+	} = useContext(DisplayContext)
 	const competitionData = competitionsMap[competitionId]
 	if (!competitionData) return null
 	const {
@@ -40,6 +43,11 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 	function handleNavigateToCompetition() {
 		setCurrentCompetitionId(competitionId)
 		navigation.navigate("competitions", { screen: "viewCompetitionTabNav" })
+	}
+
+	function handleNavigateToReviewSubmissions() {
+		setCurrentRevieweingCompetitionId(competitionId)
+		navigation.navigate("profile", { screen: "reviewSubmissionsScreen" })
 	}
 
 	return (
@@ -77,7 +85,7 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 					{showButtons && (
 						<VStack space="3">
 							<VStack alignItems="flex-end">
-								<Button>
+								<Button onPress={handleNavigateToReviewSubmissions}>
 									<Text>Review Submissions</Text>
 								</Button>
 							</VStack>

@@ -11,6 +11,7 @@ import { LoginScreen } from "../screens/profile/LoginScreen"
 import { ProfileScreen } from "../screens/ProfileScreen"
 import { UserContext } from "../context/UserContext"
 import { ProfileTabNav } from "./ProfileTabNav"
+import { ReviewSubmissionsScreen } from "../screens/profile/ReviewSubmissionsScreen"
 
 const Stack = createStackNavigator()
 
@@ -25,6 +26,10 @@ function ProfileStackNav() {
 				</Stack.Group>
 			)}
 			<Stack.Screen name="profileTabNav" component={ProfileTabNav} />
+			<Stack.Screen
+				name="reviewSubmissionsScreen"
+				component={ReviewSubmissionsScreen}
+			/>
 		</Stack.Navigator>
 	)
 }

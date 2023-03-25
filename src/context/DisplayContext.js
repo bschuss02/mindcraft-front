@@ -10,18 +10,24 @@ function DisplayContextProvider({ children }) {
 	const [isStartupLoading, setIsStartupLoading] = useState(false)
 	const [message, setMessage] = useState("")
 	const [currentCompetitionId, setCurrentCompetitionId] = useState(1)
+	const [
+		currentRevieweingCompetitionId,
+		setCurrentRevieweingCompetitionId,
+	] = useState(1)
 	const [selectedFiles, setSelectedFiles] = useState([])
 
 	const stateVars = {
 		message,
 		isStartupLoading,
 		currentCompetitionId,
+		currentRevieweingCompetitionId,
 		selectedFiles,
 	}
 	const stateSetters = {
 		setMessage,
 		setIsStartupLoading,
 		setCurrentCompetitionId,
+		setCurrentRevieweingCompetitionId,
 		setSelectedFiles,
 	}
 	return (
