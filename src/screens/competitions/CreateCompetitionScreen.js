@@ -133,7 +133,12 @@ function CreateCompetitionScreen() {
 								helpful in creating their submission.
 							</Heading>
 						</VStack>
-						<TextArea h="90px" totalLines={4} ml="1px" placeholder="(TODO)" />
+						<TextArea
+							h="90px"
+							totalLines={4}
+							ml="1px"
+							placeholder={`(eg) Deforum Stable Diffusion (https://github.com/deforum/stable-diffusion), DALL-E 2 (https://openai.com/product/dall-e-2), Alaska Climate Data (https://nca2014.globalchange.gov/highlights)`}
+						/>
 					</VStack>
 					<VStack space="2">
 						<Heading fontSize="30px">Agree to Terms and Conditions</Heading>
