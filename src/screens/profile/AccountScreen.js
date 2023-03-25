@@ -5,10 +5,9 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-import { UserContext } from "../context/UserContext"
+import { UserContext } from "../../context/UserContext"
 
-// was just building signup route
-function ProfileScreen() {
+function AccountScreen() {
 	const navigation = useNavigation()
 	const { currentUser, setCurrentUser } = useContext(UserContext)
 
@@ -25,7 +24,7 @@ function ProfileScreen() {
 	if (currentUser) {
 		const { username } = currentUser
 		return (
-			<Box variant="screen">
+			<Box variant="screen" mt="12">
 				<Text>ProfileScreen</Text>
 				<Text>Current user username: {username}</Text>
 				<Button onPress={handleSignOut}>
@@ -35,9 +34,9 @@ function ProfileScreen() {
 		)
 	} else {
 		return (
-			<Box variant="screen">
+			<Box variant="screen" mt="12">
 				<Text>Login to view your profile</Text>
-				<Button onPress={() => navigation.navigate("SignupScreen")}>
+				<Button onPress={() => navigation.navigate("signupScreen")}>
 					<Text>Log In</Text>
 				</Button>
 			</Box>
@@ -45,4 +44,4 @@ function ProfileScreen() {
 	}
 }
 
-export { ProfileScreen }
+export { AccountScreen }

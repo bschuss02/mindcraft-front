@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { TouchableOpacity } from "react-native"
 import {
 	Box,
@@ -8,19 +8,17 @@ import {
 	VStack,
 	Icon,
 	Input,
-	useToast,
 	Spinner,
 } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
+import DefaultBar from "../../components/bars/DefaultBar"
+import apiCall from "../../util/api/apiCall"
+import showMyToast from "../../util/api/showMyToast"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useStartup } from "../../util/api/startup/useStartup"
 
-import DefaultBar from "../components/bars/DefaultBar"
-import apiCall from "../util/api/apiCall"
-import showMyToast from "../util/api/showMyToast"
-import { useStartup } from "../util/api/startup/useStartup"
-
-export default function SignupScreen() {
+function LoginScreen() {
 	const navigation = useNavigation()
 	const callStartup = useStartup()
 	const [username, setUsername] = useState("user01")
@@ -28,13 +26,12 @@ export default function SignupScreen() {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
-	async function handleSignup() {
+	async function handleLogin() {
 		setIsLoading(true)
-		const signupInfo = {
+		const { data, error } = await apiCall("GET", "auth/login", {
 			username,
 			password,
-		}
-		const { data, error } = await apiCall("POST", "auth/signup", signupInfo)
+		})
 		if (error) {
 			setIsLoading(false)
 			return showMyToast(error)
@@ -42,14 +39,16 @@ export default function SignupScreen() {
 		const { user, token } = data
 		await AsyncStorage.setItem("authToken", token)
 		await callStartup()
-		navigation.navigate("ProfileScreen")
+		navigation.navigate("profile", {
+			screen: "profileTabNav",
+		})
 		setIsLoading(false)
 	}
 
 	return (
 		<Box variant="screen">
 			<VStack space="5" maxW="500px">
-				<DefaultBar title="Sign Up" />
+				<DefaultBar title="Log In" />
 				<VStack space="3">
 					<Input
 						value={username}
@@ -80,15 +79,19 @@ export default function SignupScreen() {
 					/>
 				</VStack>
 				<VStack space="5" alignItems="center">
-					<Button onPress={handleSignup}>
-						<Text>Sign Up</Text>
+					<Button onPress={handleLogin}>
+						<Text>Log In</Text>
 					</Button>
 					<HStack space={1} justifyContent="center">
-						<Text>Already have an account?</Text>
+						<Text>Don't have an account?</Text>
 						<TouchableOpacity
-							onPress={() => navigation.navigate("LoginScreen")}
+							onPress={() =>
+								navigation.navigate("profile", {
+									screen: "signupScreen",
+								})
+							}
 						>
-							<Text color="primary.600">Log In</Text>
+							<Text color="primary.600">Sign Up</Text>
 						</TouchableOpacity>
 					</HStack>
 					{isLoading && (
@@ -104,3 +107,5 @@ export default function SignupScreen() {
 		</Box>
 	)
 }
+
+export { LoginScreen }

@@ -6,10 +6,11 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { createStackNavigator } from "@react-navigation/stack"
 
-import SignupScreen from "../screens/SignupScreen"
-import { LoginScreen } from "../screens/LoginScreen"
+import SignupScreen from "../screens/profile/SignupScreen"
+import { LoginScreen } from "../screens/profile/LoginScreen"
 import { ProfileScreen } from "../screens/ProfileScreen"
 import { UserContext } from "../context/UserContext"
+import { ProfileTabNav } from "./ProfileTabNav"
 
 const Stack = createStackNavigator()
 
@@ -19,11 +20,11 @@ function ProfileStackNav() {
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			{!currentUser && (
 				<Stack.Group>
-					<Stack.Screen name="SignupScreen" component={SignupScreen} />
-					<Stack.Screen name="LoginScreen" component={LoginScreen} />
+					<Stack.Screen name="signupScreen" component={SignupScreen} />
+					<Stack.Screen name="loginScreen" component={LoginScreen} />
 				</Stack.Group>
 			)}
-			<Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+			<Stack.Screen name="profileTabNav" component={ProfileTabNav} />
 		</Stack.Navigator>
 	)
 }

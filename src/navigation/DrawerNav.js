@@ -13,7 +13,7 @@ import { useWindowDimensions } from "react-native"
 import * as Linking from "expo-linking"
 
 import { HomeScreen } from "../screens/HomeScreen"
-import SignupScreen from "../screens/SignupScreen"
+import SignupScreen from "../screens/profile/SignupScreen"
 import { CustomDrawerContent } from "../components/navigation/CustomDrawerContent"
 import { CustomHeader } from "../components/navigation/CustomHeader"
 import { HomeTabNav } from "./HomeTabNav"
