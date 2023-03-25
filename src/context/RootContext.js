@@ -6,14 +6,17 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { UserContextProvider } from "./UserContext"
 import { DisplayContextProvider } from "./DisplayContext"
 import { CompetitionContextProvider } from "./CompetitionContext"
+import { SubmissionContextProvider } from "./SubmissionContext"
 
 function RootContextProvider({ children }) {
 	return (
-		<CompetitionContextProvider>
-			<DisplayContextProvider>
-				<UserContextProvider>{children}</UserContextProvider>
-			</DisplayContextProvider>
-		</CompetitionContextProvider>
+		<SubmissionContextProvider>
+			<CompetitionContextProvider>
+				<DisplayContextProvider>
+					<UserContextProvider>{children}</UserContextProvider>
+				</DisplayContextProvider>
+			</CompetitionContextProvider>
+		</SubmissionContextProvider>
 	)
 }
 

@@ -17,6 +17,7 @@ const dummyCompetitionData = {
 		rules: "These are the rules of competition 1",
 		resources: "These are the resources of competition 1",
 		createdAt: new Date("2023-3-10"),
+		submissionIds: [10, 11],
 	},
 	2: {
 		_id: 2,
@@ -30,6 +31,7 @@ const dummyCompetitionData = {
 		rules: "These are the rules of competition 2",
 		resources: "These are the resources of competition 2",
 		createdAt: new Date("2023-3-10"),
+		submissionIds: [12, 11],
 	},
 }
 
