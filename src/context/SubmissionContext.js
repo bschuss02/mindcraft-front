@@ -45,12 +45,15 @@ const SubmissionContext = createContext()
 
 function SubmissionContextProvider({ children }) {
 	const [submissionsMap, setSubmissionsMap] = useState(dummySubmissionData)
+	const [mySubmissionIds, setMySubmissionIds] = useState([10, 11])
 
 	const stateVars = {
 		submissionsMap,
+		mySubmissionIds,
 	}
 	const stateSetters = {
 		setSubmissionsMap,
+		setMySubmissionIds,
 	}
 	return (
 		<SubmissionContext.Provider value={{ ...stateVars, ...stateSetters }}>

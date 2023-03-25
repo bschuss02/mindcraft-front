@@ -17,8 +17,9 @@ import { SubmissionContext } from "../../context/SubmissionContext"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { formatDate } from "../../util/date/formatDate"
 import { FileItem } from "./FileItem"
+import { mapStatus } from "../../util/status/mapStatus"
 
-function SubmissionItem({ submissionId }) {
+function SubmissionItem({ submissionId, showButtons = false }) {
 	const navigation = useNavigation()
 	const { submissionsMap } = useContext(SubmissionContext)
 	const { competitionsMap } = useContext(CompetitionContext)
@@ -40,8 +41,8 @@ function SubmissionItem({ submissionId }) {
 	} = competitionData
 
 	return (
-		<Pressable _hover={{ bg: "c1.800" }} p="2" borderRadius="10">
-			<HStack>
+		<Pressable _hover={{ bg: "c1.800" }} p="2">
+			<HStack justifyContent="space-between">
 				<HStack space="4">
 					<Box>
 						<Image
@@ -72,10 +73,25 @@ function SubmissionItem({ submissionId }) {
 						</VStack>
 					</VStack>
 				</HStack>
-				{/* <VStack>
-					<Heading fontSize="20px">{`$${prizeMoney}`}</Heading>
-					<Text>{formatDate(deadline)}</Text>
-				</VStack> */}
+				{showButtons && (
+					<VStack alignItems="flex-end" space="2">
+						<VStack>
+							<Heading fontSize="20px">{`$${prizeMoney}`}</Heading>
+							<Text>{formatDate(deadline)}</Text>
+						</VStack>
+						<Text>{`Status: ${mapStatus(result)}`}</Text>
+						<VStack>
+							<Button
+								bg="c2.500"
+								leftIcon={
+									<Icon as={Ionicons} name="ios-trash" color="c1.50" size="5" />
+								}
+							>
+								<Text>Remove Submission</Text>
+							</Button>
+						</VStack>
+					</VStack>
+				)}
 			</HStack>
 		</Pressable>
 	)
