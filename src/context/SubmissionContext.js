@@ -11,9 +11,11 @@ const dummySubmissionData = {
 		creator: 100,
 		files: [
 			{
+				fileName: "file10.jpg",
 				uri: "https://picsum.photos/200/300",
 			},
 			{
+				fileName: "file11.jpg",
 				uri: "https://picsum.photos/200/300",
 			},
 		],
@@ -26,9 +28,11 @@ const dummySubmissionData = {
 		creator: 100,
 		files: [
 			{
+				fileName: "file1.jpg",
 				uri: "https://picsum.photos/200/300",
 			},
 			{
+				fileName: "file2.jpg",
 				uri: "https://picsum.photos/200/300",
 			},
 		],
