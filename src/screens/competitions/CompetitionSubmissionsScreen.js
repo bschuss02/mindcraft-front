@@ -26,9 +26,8 @@ function CompetitionSubmissionsScreen() {
 		rules,
 		resources,
 		createdAt,
-		subs,
+		subs: submissionIds,
 	} = competitionData
-	const submissionIds = subs.map((sub) => sub._id)
 	const hasSubmissions = submissionIds ? submissionIds.length > 0 : false
 	console.log("hasSubmissions", hasSubmissions)
 	return (

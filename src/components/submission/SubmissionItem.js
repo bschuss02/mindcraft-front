@@ -81,6 +81,12 @@ function SubmissionItem({
 							</VStack>
 						)}
 						<VStack>
+							<Heading fontSize="15">Description:</Heading>
+							<Text ml="4" mt="2">
+								{description}
+							</Text>
+						</VStack>
+						<VStack>
 							<Heading fontSize="15">Submitted Files:</Heading>
 							<VStack ml="4" space="2" mt="2">
 								{files.map((file, index) => (

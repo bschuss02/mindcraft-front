@@ -19,9 +19,25 @@ import { DisplayContext } from "../../context/DisplayContext"
 import { UploadFileItem } from "../../components/submission/UploadFileItem"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import showMyToast from "../../util/api/showMyToast"
+import { SubmissionContext } from "../../context/SubmissionContext"
+import { CompetitionContext } from "../../context/CompetitionContext"
 
 function JoinCompetitionScreen() {
 	const navigation = useNavigation()
+	const {
+		competitionsMap,
+		competitionFeedIds,
+		myCompetitionIds,
+		setCompetitionsMap,
+		setCompetitionFeedIds,
+		setMyCompetitionIds,
+	} = useContext(CompetitionContext)
+	const {
+		setSubmissionsMap,
+		setMySubmissionIds,
+		submissionsMap,
+		mySubmissionIds,
+	} = useContext(SubmissionContext)
 	const {
 		selectedFiles,
 		createSubDescription,
@@ -39,6 +55,13 @@ function JoinCompetitionScreen() {
 		if (result.type === "success") {
 			setSelectedFiles([...selectedFiles, result])
 		}
+	}
+
+	function reset() {
+		setSelectedFiles([])
+		setCreateSubDescription("")
+		setCreateSubHideSubmission(false)
+		setCreateSubAcceptedTerms(false)
 	}
 
 	async function handleCreateSubmission() {
@@ -80,7 +103,19 @@ function JoinCompetitionScreen() {
 			return showMyToast(error)
 		}
 		const data = await res.json()
-		console.log("data", data)
+		showMyToast("Submission created successfully")
+		const { sub } = data
+		const subId = sub._id
+		const newCommpetitionsMap = { ...competitionsMap }
+		newCommpetitionsMap[currentCompetitionId].subs.push(subId)
+		setCompetitionsMap(newCommpetitionsMap)
+		setSubmissionsMap({ ...submissionsMap, [subId]: sub })
+		setMySubmissionIds([subId, ...mySubmissionIds])
+		navigation.navigate("competitions", {
+			screen: "viewCompetitionTabNav",
+			params: { screen: "competitionSubmissionsScreen" },
+		})
+		navigation.navigate("competitions", { screen: "viewCompetitionTabNav" })
 	}
 
 	return (
