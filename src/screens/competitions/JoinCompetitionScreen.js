@@ -104,18 +104,17 @@ function JoinCompetitionScreen() {
 		}
 		const data = await res.json()
 		showMyToast("Submission created successfully")
-		const { sub } = data
-		const subId = sub._id
+		const { submission } = data
+		const subId = submission._id
 		const newCommpetitionsMap = { ...competitionsMap }
-		newCommpetitionsMap[currentCompetitionId].subs.push(subId)
-		setCompetitionsMap(newCommpetitionsMap)
-		setSubmissionsMap({ ...submissionsMap, [subId]: sub })
+		newCommpetitionsMap[currentCompetitionId].subs.unshift(subId)
+		setSubmissionsMap({ ...submissionsMap, [subId]: submission })
 		setMySubmissionIds([subId, ...mySubmissionIds])
+		setCompetitionsMap(newCommpetitionsMap)
 		navigation.navigate("competitions", {
 			screen: "viewCompetitionTabNav",
 			params: { screen: "competitionSubmissionsScreen" },
 		})
-		navigation.navigate("competitions", { screen: "viewCompetitionTabNav" })
 	}
 
 	return (
