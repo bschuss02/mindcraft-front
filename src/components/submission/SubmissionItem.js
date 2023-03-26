@@ -31,9 +31,15 @@ function SubmissionItem({
 	const { competitionsMap } = useContext(CompetitionContext)
 	const submissionData = submissionsMap[submissionId]
 	if (!submissionData) return null
-	const { competition, creator, files, description, result } = submissionData
-	const competitionId = competition._id
+	const {
+		competition: competitionId,
+		creator,
+		files,
+		description,
+		result,
+	} = submissionData
 	const competitionData = competitionsMap[competitionId]
+	if (!competitionData) return null
 	const {
 		coverImage,
 		title,
@@ -80,6 +86,12 @@ function SubmissionItem({
 								</Heading>
 							</VStack>
 						)}
+						<VStack>
+							<Heading fontSize="15">Description:</Heading>
+							<Text ml="4" mt="2">
+								{description}
+							</Text>
+						</VStack>
 						<VStack>
 							<Heading fontSize="15">Submitted Files:</Heading>
 							<VStack ml="4" space="2" mt="2">
