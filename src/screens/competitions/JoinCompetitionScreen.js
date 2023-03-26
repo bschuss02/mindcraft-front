@@ -60,16 +60,18 @@ function JoinCompetitionScreen() {
 			}
 		})
 		let formData = new FormData()
-		console.log("files[0].file", files[0].file)
-		formData.append("photo", files[0].file)
-		// formData.append("createSubInfo", JSON.stringify(createSubInfo))
-		// files.forEach((file) => {
-		// 	formData.append("files", file.file)
-		// })
+		formData.append("subMetadata", JSON.stringify(createSubInfo))
+		files.forEach((file) => {
+			formData.append("files", file.file)
+		})
 		let URL = "http://localhost:3000/subs/"
+		const authToken = await AsyncStorage.getItem("authToken")
 		const config = {
 			method: "POST",
 			body: formData,
+			headers: {
+				"x-auth-token": authToken,
+			},
 		}
 		const res = await fetch(URL, config)
 		if (res.status !== 200) {
