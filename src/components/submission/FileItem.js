@@ -7,16 +7,16 @@ import { downloadFile } from "../../util/download/downloadFile"
 
 function FileItem({ fileData }) {
 	const navigation = useNavigation()
-	const { fileName, uri } = fileData
+	const { fileName, uri, originalFileName } = fileData
 
 	function handleDownloadFile() {
-		downloadFile(uri, fileName)
+		downloadFile(uri, originalFileName)
 	}
 
 	return (
 		<Box>
 			<HStack space="2">
-				<Text>{fileName}</Text>
+				<Text>{originalFileName}</Text>
 				<TouchableOpacity onPress={handleDownloadFile}>
 					<Icon as={Ionicons} name="download-outline" color="c2.500" size="5" />
 				</TouchableOpacity>

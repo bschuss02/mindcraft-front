@@ -75,6 +75,7 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 		const newMyCompetitionIds = myCompetitionIds.filter(
 			(id) => id !== competitionId,
 		)
+		setMyCompetitionIds(newMyCompetitionIds)
 		const newCompetitionsMap = { ...competitionsMap }
 		delete newCompetitionsMap[competitionId]
 		setCompetitionsMap(newCompetitionsMap)

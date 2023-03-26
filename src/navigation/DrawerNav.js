@@ -27,7 +27,9 @@ const Drawer = createDrawerNavigator()
 
 function DrawerNav() {
 	const callStartup = useStartup()
+	const navigation = useNavigation()
 	useEffect(() => {
+		navigation.navigate("competitions", { screen: "competitionsScreen" })
 		callStartup()
 	}, [])
 
