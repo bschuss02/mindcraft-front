@@ -72,7 +72,7 @@ function CreateCompetitionScreen() {
 		}
 		const { data, error } = await apiCall("POST", "comps", createCompData)
 		if (error) return showMyToast(error)
-		console.log("data", data)
+		const { comp } = data
 	}
 
 	return (
