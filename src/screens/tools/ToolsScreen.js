@@ -43,25 +43,3 @@ function ToolsScreen() {
 }
 
 export { ToolsScreen }
-
-/*
-<Pressable
-            onPress={handlePress("gmail.com")}
-            _hover={{ bg: "c1.800" }}
-            p="2"
-            borderRadius="10"
-        >
-            <HStack justifyContent="space-between" mx="4">
-                <HStack space="3">
-                    <VStack>
-                        <Text fontSize="16px" maxW="400px">
-                            {title}
-                        </Text>
-                        <Text fontSize="13px" maxW="400px" opacity={0.7}>
-                            {subtitle}
-                        </Text>
-                    </VStack>
-                </HStack>
-            </HStack>
-        </Pressable>
-		*/

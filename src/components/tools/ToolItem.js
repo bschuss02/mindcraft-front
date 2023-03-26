@@ -13,12 +13,11 @@ import {
 } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
-import { formatDate } from "../../util/date/formatDate"
+import { formatDate, formatDateLong } from "../../util/date/formatDate"
 
-function ToolItem({ toolData }) {
+function ToolItem({ toolData, showDate = false }) {
 	const navigation = useNavigation()
 	const { title, subtitle, coverPhoto, url } = toolData
-	console.log("coverPhoto", coverPhoto)
 	return (
 		<Pressable
 			onPress={() => Linking.openURL(url)}
@@ -26,24 +25,33 @@ function ToolItem({ toolData }) {
 			p="2"
 			borderRadius="10"
 		>
-			<HStack space="4">
-				<Box>
-					<Image
-						source={{ uri: coverPhoto }}
-						alt="Thumbnail for resource"
-						w="20"
-						h="20"
-						borderRadius="10"
-					/>
-				</Box>
-				<VStack>
-					<Text fontSize="16px" maxW="400px">
-						{title}
-					</Text>
-					<Text fontSize="13px" maxW="400px" opacity={0.7}>
-						{subtitle}
-					</Text>
-				</VStack>
+			<HStack justifyContent="space-between" mr="4">
+				<HStack space="4">
+					<Box>
+						<Image
+							source={{ uri: coverPhoto }}
+							alt="Thumbnail for resource"
+							w="20"
+							h="20"
+							borderRadius="10"
+						/>
+					</Box>
+					<VStack>
+						<Text fontSize="16px" maxW="400px">
+							{title}
+						</Text>
+						<Text fontSize="13px" maxW="400px" opacity={0.7}>
+							{subtitle}
+						</Text>
+					</VStack>
+				</HStack>
+				{showDate && (
+					<VStack>
+						<Text fontSize="13px" maxW="400px" opacity={0.7}>
+							{formatDateLong(toolData.date)}
+						</Text>
+					</VStack>
+				)}
 			</HStack>
 		</Pressable>
 	)

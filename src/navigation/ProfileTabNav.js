@@ -26,11 +26,6 @@ function ProfileTabNav() {
 				}}
 			>
 				<Tab.Screen
-					name="accountScreen"
-					component={AccountScreen}
-					options={{ tabBarLabel: "Account" }}
-				/>
-				<Tab.Screen
 					name="mySubmissionsScreen"
 					component={MySubmissionsScreen}
 					options={{ tabBarLabel: "My Submissions" }}
@@ -39,6 +34,11 @@ function ProfileTabNav() {
 					name="myCompetitionsScreen"
 					component={MyCompetitionsScreen}
 					options={{ tabBarLabel: "My Competitions" }}
+				/>
+				<Tab.Screen
+					name="accountScreen"
+					component={AccountScreen}
+					options={{ tabBarLabel: "Account" }}
 				/>
 			</Tab.Navigator>
 		</View>

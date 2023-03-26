@@ -24,6 +24,10 @@ function CustomDrawerItem({ route, props, index }) {
 			: name
 	const isFocused = props.state.index === index
 
+	let iconName = options.drawerIcon
+	if (isFocused) {
+		iconName = iconName.replace("-outline", "")
+	}
 	return (
 		<Pressable
 			borderRadius="10"
@@ -34,7 +38,7 @@ function CustomDrawerItem({ route, props, index }) {
 			<HStack space="2" alignItems="center">
 				<Icon
 					as={Ionicons}
-					name={options.drawerIcon}
+					name={iconName}
 					size="6"
 					color={isFocused ? "c2.500" : "c1.50"}
 				/>
