@@ -20,6 +20,8 @@ import { formatDate } from "../../util/date/formatDate"
 import { FileItem } from "./FileItem"
 import { mapStatus } from "../../util/status/mapStatus"
 import { DisplayContext } from "../../context/DisplayContext"
+import apiCall from "../../util/api/apiCall"
+import showMyToast from "../../util/api/showMyToast"
 
 function SubmissionItem({
 	submissionId,
@@ -31,7 +33,12 @@ function SubmissionItem({
 	const { winningSubmissionId, setWinningSubmissionId } = useContext(
 		DisplayContext,
 	)
-	const { submissionsMap } = useContext(SubmissionContext)
+	const {
+		submissionsMap,
+		setSubmissionsMap,
+		mySubmissionIds,
+		setMySubmissionIds,
+	} = useContext(SubmissionContext)
 	const { competitionsMap } = useContext(CompetitionContext)
 	const submissionData = submissionsMap[submissionId]
 	if (!submissionData) return null
@@ -69,6 +76,20 @@ function SubmissionItem({
 		} else {
 			setWinningSubmissionId(null)
 		}
+	}
+
+	async function handleDeleteSubmission() {
+		const deleteSubInfo = {
+			submissionId,
+			competitionId,
+		}
+		const { data, error } = await apiCall("DELETE", "subs", deleteSubInfo)
+		if (error) return showMyToast(error)
+		showMyToast("Submission deleted successfully")
+		setMySubmissionIds(mySubmissionIds.filter((id) => id !== submissionId))
+		const newSubmissionMap = { ...submissionsMap }
+		delete newSubmissionMap[submissionId]
+		setSubmissionsMap(newSubmissionMap)
 	}
 
 	return (
@@ -134,6 +155,7 @@ function SubmissionItem({
 								leftIcon={
 									<Icon as={Ionicons} name="ios-trash" color="c1.50" size="5" />
 								}
+								onPress={handleDeleteSubmission}
 							>
 								<Text>Remove Submission</Text>
 							</Button>
