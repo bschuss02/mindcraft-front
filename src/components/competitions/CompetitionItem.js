@@ -17,10 +17,19 @@ import { formatDate } from "../../util/date/formatDate"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { DisplayContext } from "../../context/DisplayContext"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import apiCall from "../../util/api/apiCall"
+import showMyToast from "../../util/api/showMyToast"
 
 function CompetitionItem({ competitionId, showButtons = false }) {
 	const navigation = useNavigation()
-	const { competitionsMap } = useContext(CompetitionContext)
+	const {
+		competitionsMap,
+		setCompetitionsMap,
+		setCompetitionFeedIds,
+		competitionFeedIds,
+		myCompetitionIds,
+		setMyCompetitionIds,
+	} = useContext(CompetitionContext)
 	const {
 		setCurrentCompetitionId,
 		setCurrentRevieweingCompetitionId,
@@ -50,6 +59,25 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 	function handleNavigateToReviewSubmissions() {
 		setCurrentRevieweingCompetitionId(competitionId)
 		navigation.navigate("profile", { screen: "reviewSubmissionsScreen" })
+	}
+
+	async function handleDeleteCompetition() {
+		const deleteCompInfo = {
+			competitionId,
+		}
+		const { data, error } = await apiCall("DELETE", "comps", deleteCompInfo)
+		if (error) return showMyToast(error)
+		showMyToast("Competition deleted successfully")
+		const newCompetitionFeedIds = competitionFeedIds.filter(
+			(id) => id !== competitionId,
+		)
+		setCompetitionFeedIds(newCompetitionFeedIds)
+		const newMyCompetitionIds = myCompetitionIds.filter(
+			(id) => id !== competitionId,
+		)
+		const newCompetitionsMap = { ...competitionsMap }
+		delete newCompetitionsMap[competitionId]
+		setCompetitionsMap(newCompetitionsMap)
 	}
 
 	return (
@@ -92,7 +120,7 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 								</Button>
 							</VStack>
 							<VStack alignItems="flex-end">
-								<Button>
+								<Button onPress={handleDeleteCompetition}>
 									<Text>Delete Competitions</Text>
 								</Button>
 							</VStack>
