@@ -44,6 +44,7 @@ function useStartup() {
 			setMyCompetitionIds(myCompIds)
 			setMySubmissionIds(mySubIds)
 			setSubmissionsMap(subsMap)
+			console.log("data", data)
 		}
 		setIsStartupLoading(false)
 	}

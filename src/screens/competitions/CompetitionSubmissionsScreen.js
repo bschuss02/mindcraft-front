@@ -15,7 +15,7 @@ function CompetitionSubmissionsScreen() {
 	if (!competitionData) return null
 	const {
 		_id,
-		organizerId,
+		organizer,
 		coverImage,
 		title,
 		subtitle,
@@ -25,8 +25,9 @@ function CompetitionSubmissionsScreen() {
 		rules,
 		resources,
 		createdAt,
-		submissionIds,
+		subs,
 	} = competitionData
+	const submissionIds = subs.map((sub) => sub._id)
 	return (
 		<Box variant="screen" mt="33">
 			<VStack space="4">
