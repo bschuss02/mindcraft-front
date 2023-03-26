@@ -27,7 +27,7 @@ function CompetitionOverviewScreen() {
 	} = competitionData
 	return (
 		<Box variant="screen" mt="33">
-			<Text>{overview}</Text>
+			<Text maxWidth="650px">{overview}</Text>
 		</Box>
 	)
 }

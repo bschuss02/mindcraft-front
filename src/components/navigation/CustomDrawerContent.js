@@ -30,7 +30,7 @@ function CustomDrawerContent(props) {
 			<VStack p="4" space="2">
 				<HStack alignItems="center">
 					<Image source={require("../../../assets/2.png")} w="10" h="10" />
-					<Heading ml="2" color="c3.500">
+					<Heading fontSize="28px" ml="2" color="c3.500">
 						MindCraft
 					</Heading>
 				</HStack>

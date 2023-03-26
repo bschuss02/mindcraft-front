@@ -21,8 +21,8 @@ import { useStartup } from "../../util/api/startup/useStartup"
 function LoginScreen() {
 	const navigation = useNavigation()
 	const callStartup = useStartup()
-	const [username, setUsername] = useState("user01")
-	const [password, setPassword] = useState("asdf")
+	const [username, setUsername] = useState("")
+	const [password, setPassword] = useState("")
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 

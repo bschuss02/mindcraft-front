@@ -17,36 +17,20 @@ function DisplayContextProvider({ children }) {
 	] = useState(null)
 
 	// create competition
-	const [createCompTitle, setCreateCompTitle] = useState(
-		`Comp title ${index} `.repeat(3),
-	)
-	const [createCompSubtitle, setCreateCompSubtitle] = useState(
-		`Comp subtitle ${index} `.repeat(4),
-	)
-	const [createCompOverview, setCreateCompOverview] = useState(
-		`Comp overview ${index} `.repeat(20),
-	)
-	const [createCompPrizeMoney, setCreateCompPrizeMoney] = useState(
-		`$${index + 1000} `,
-	)
-	const [createCompDeadline, setCreateCompDeadline] = useState(
-		`04/${index + 1}/2023`,
-	)
-	const [createCompRules, setCreateCompRules] = useState(
-		`Comp rules ${index} `.repeat(10),
-	)
-	const [createCompResources, setCreateCompResources] = useState(
-		`Comp resources ${index} `.repeat(10),
-	)
-	const [createCompAcceptedTerms, setCreateCompAcceptedTerms] = useState(true)
+	const [createCompTitle, setCreateCompTitle] = useState("")
+	const [createCompSubtitle, setCreateCompSubtitle] = useState("")
+	const [createCompOverview, setCreateCompOverview] = useState("")
+	const [createCompPrizeMoney, setCreateCompPrizeMoney] = useState("")
+	const [createCompDeadline, setCreateCompDeadline] = useState("")
+	const [createCompRules, setCreateCompRules] = useState("")
+	const [createCompResources, setCreateCompResources] = useState("")
+	const [createCompAcceptedTerms, setCreateCompAcceptedTerms] = useState(false)
 
 	// create submission
-	const [createSubDescription, setCreateSubDescription] = useState(
-		`Sub description ${index} `.repeat(10),
-	)
+	const [createSubDescription, setCreateSubDescription] = useState("")
 	const [selectedFiles, setSelectedFiles] = useState([])
 	const [createSubHideSubmission, setCreateSubHideSubmission] = useState(false)
-	const [createSubAcceptedTerms, setCreateSubAcceptedTerms] = useState(true)
+	const [createSubAcceptedTerms, setCreateSubAcceptedTerms] = useState(false)
 
 	// choosing winners
 	const [winningSubmissionId, setWinningSubmissionId] = useState(null)

@@ -31,6 +31,11 @@ function useStartup() {
 				setIsStartupLoading(false)
 				return showMyToast(error)
 			}
+			const { allCompIds, compsMap, subsMap } = data
+			setCompetitionsMap(compsMap)
+			setCompetitionFeedIds(allCompIds)
+			setSubmissionsMap(subsMap)
+			console.log("data", data)
 		} else {
 			const { data, error } = await apiCall("GET", "startup/withuser", {})
 			if (error) {
@@ -38,6 +43,7 @@ function useStartup() {
 				return showMyToast(error)
 			}
 			const { user, allCompIds, compsMap, myCompIds, mySubIds, subsMap } = data
+			conosle.log("allCompsIds", allCompIds)
 			setCurrentUser(user)
 			setCompetitionsMap(compsMap)
 			setCompetitionFeedIds(allCompIds)
