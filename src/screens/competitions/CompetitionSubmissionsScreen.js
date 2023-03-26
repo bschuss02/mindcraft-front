@@ -30,9 +30,13 @@ function CompetitionSubmissionsScreen() {
 	return (
 		<Box variant="screen" mt="33">
 			<VStack space="4">
-				{submissionIds.map((submissionId, index) => (
-					<SubmissionItem key={index.toString()} submissionId={submissionId} />
-				))}
+				{submissionIds &&
+					submissionIds.map((submissionId, index) => (
+						<SubmissionItem
+							key={index.toString()}
+							submissionId={submissionId}
+						/>
+					))}
 			</VStack>
 		</Box>
 	)

@@ -10,7 +10,6 @@ function FileItem({ fileData }) {
 	const { fileName, uri } = fileData
 
 	function handleDownloadFile() {
-		console.log("downloading file")
 		downloadFile(uri, fileName)
 	}
 

@@ -6,10 +6,14 @@ import showMyToast from "../showMyToast"
 import { UserContext } from "../../../context/UserContext"
 import { DisplayContext } from "../../../context/DisplayContext"
 import { CompetitionContext } from "../../../context/CompetitionContext"
+import { SubmissionContext } from "../../../context/SubmissionContext"
 
 function useStartup() {
 	const navigation = useNavigation()
 	const { currentUser, setCurrentUser } = useContext(UserContext)
+	const { setMySubmissionIds, setSubmissionsMap } = useContext(
+		SubmissionContext,
+	)
 	const { setMessage, setIsStartupLoading } = useContext(DisplayContext)
 	const {
 		setCompetitionsMap,
@@ -33,10 +37,13 @@ function useStartup() {
 				setIsStartupLoading(false)
 				return showMyToast(error)
 			}
-			const { allCompIds, allCompsMap, user } = data
+			const { user, allCompIds, compsMap, myCompIds, mySubIds, subsMap } = data
 			setCurrentUser(user)
-			setCompetitionsMap(allCompsMap)
+			setCompetitionsMap(compsMap)
 			setCompetitionFeedIds(allCompIds)
+			setMyCompetitionIds(myCompIds)
+			setMySubmissionIds(mySubIds)
+			setSubmissionsMap(subsMap)
 		}
 		setIsStartupLoading(false)
 	}

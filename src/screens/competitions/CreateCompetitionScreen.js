@@ -50,7 +50,6 @@ function CreateCompetitionScreen() {
 					.replace(" ", ""),
 			)
 			const dateParts = createCompDeadline.split("/")
-			console.log("dateParts", dateParts)
 			deadline = new Date(
 				parseInt(dateParts[2]),
 				parseInt(dateParts[1]) - 1,

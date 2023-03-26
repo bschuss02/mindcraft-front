@@ -31,6 +31,7 @@ function JoinCompetitionScreen() {
 		setCreateSubDescription,
 		setCreateSubHideSubmission,
 		setCreateSubAcceptedTerms,
+		currentCompetitionId,
 	} = useContext(DisplayContext)
 
 	async function handleAddNewFiles() {
@@ -39,10 +40,10 @@ function JoinCompetitionScreen() {
 			setSelectedFiles([...selectedFiles, result])
 		}
 	}
-	console.log("selectedFiles", selectedFiles)
 
 	async function handleCreateSubmission() {
 		const createSubInfo = {
+			competitionId: currentCompetitionId,
 			description: createSubDescription,
 			hideSubmission: createSubHideSubmission,
 			acceptedTerms: createSubAcceptedTerms,
