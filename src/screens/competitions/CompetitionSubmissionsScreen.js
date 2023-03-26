@@ -37,7 +37,6 @@ function CompetitionSubmissionsScreen() {
 		subs: submissionIds,
 	} = competitionData
 	const hasSubmissions = submissionIds ? submissionIds.length > 0 : false
-	console.log("hasSubmissions", hasSubmissions)
 	return (
 		<Box variant="screen" mt="33">
 			<ScrollView>

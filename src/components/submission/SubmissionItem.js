@@ -39,11 +39,7 @@ function SubmissionItem({
 		result,
 	} = submissionData
 	const competitionData = competitionsMap[competitionId]
-	console.log("submissionId", submissionId)
-	console.log("competitionsMap", competitionsMap)
-	console.log("competitionId", competitionId)
-	console.log("submissionData", submissionData)
-	console.log("competitionData", competitionData)
+	if (!competitionData) return null
 	const {
 		coverImage,
 		title,
