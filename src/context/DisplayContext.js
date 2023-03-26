@@ -9,11 +9,11 @@ const DisplayContext = createContext()
 function DisplayContextProvider({ children }) {
 	const [isStartupLoading, setIsStartupLoading] = useState(false)
 	const [message, setMessage] = useState("")
-	const [currentCompetitionId, setCurrentCompetitionId] = useState(1)
+	const [currentCompetitionId, setCurrentCompetitionId] = useState(null)
 	const [
 		currentRevieweingCompetitionId,
 		setCurrentRevieweingCompetitionId,
-	] = useState(1)
+	] = useState(null)
 	const [selectedFiles, setSelectedFiles] = useState([])
 
 	const stateVars = {

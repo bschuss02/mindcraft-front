@@ -4,43 +4,43 @@ import { Box, Text, Button, HStack, VStack, Icon } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 
-const dummyCompetitionData = {
-	1: {
-		_id: 1,
-		organizerId: 100,
-		coverImage: "https://picsum.photos/200/200",
-		title: "Competition 1 ".repeat(10),
-		subtitle: "This is a description of competition 1 ".repeat(10),
-		overview: "This is an overview of competition 1 ".repeat(30),
-		prizeMoney: 1000,
-		deadline: new Date("2023-3-30"),
-		rules: "These are the rules of competition 1",
-		resources: "These are the resources of competition 1",
-		createdAt: new Date("2023-3-10"),
-		submissionIds: [10, 11],
-	},
-	2: {
-		_id: 2,
-		organizerId: 100,
-		coverImage: "https://picsum.photos/200/200",
-		title: "Competition 2",
-		subtitle: "This is a description of competition 2",
-		overview: "This is an overview of competition 2",
-		prizeMoney: 2000,
-		deadline: new Date("2023-3-30"),
-		rules: "These are the rules of competition 2",
-		resources: "These are the resources of competition 2",
-		createdAt: new Date("2023-3-10"),
-		submissionIds: [12, 11],
-	},
-}
+// const dummyCompetitionData = {
+// 	1: {
+// 		_id: 1,
+// 		organizerId: 100,
+// 		coverImage: "https://picsum.photos/200/200",
+// 		title: "Competition 1 ".repeat(10),
+// 		subtitle: "This is a description of competition 1 ".repeat(10),
+// 		overview: "This is an overview of competition 1 ".repeat(30),
+// 		prizeMoney: 1000,
+// 		deadline: new Date("2023-3-30"),
+// 		rules: "These are the rules of competition 1",
+// 		resources: "These are the resources of competition 1",
+// 		createdAt: new Date("2023-3-10"),
+// 		submissionIds: [10, 11],
+// 	},
+// 	2: {
+// 		_id: 2,
+// 		organizerId: 100,
+// 		coverImage: "https://picsum.photos/200/200",
+// 		title: "Competition 2",
+// 		subtitle: "This is a description of competition 2",
+// 		overview: "This is an overview of competition 2",
+// 		prizeMoney: 2000,
+// 		deadline: new Date("2023-3-30"),
+// 		rules: "These are the rules of competition 2",
+// 		resources: "These are the resources of competition 2",
+// 		createdAt: new Date("2023-3-10"),
+// 		submissionIds: [12, 11],
+// 	},
+// }
 
 const CompetitionContext = createContext()
 
 function CompetitionContextProvider({ children }) {
-	const [competitionsMap, setCompetitionsMap] = useState(dummyCompetitionData)
-	const [competitionFeedIds, setCompetitionFeedIds] = useState([1, 2])
-	const [myCompetitionIds, setMyCompetitionIds] = useState([1, 2])
+	const [competitionsMap, setCompetitionsMap] = useState({})
+	const [competitionFeedIds, setCompetitionFeedIds] = useState([])
+	const [myCompetitionIds, setMyCompetitionIds] = useState([])
 
 	const stateVars = {
 		competitionsMap,

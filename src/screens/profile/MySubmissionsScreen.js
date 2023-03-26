@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { SubmissionContext } from "../../context/SubmissionContext"
 import { SubmissionItem } from "../../components/submission/SubmissionItem"
+import { EmptyMessage } from "../../components/competitions/EmptyMessage"
 
 function MySubmissionsScreen() {
 	const navigation = useNavigation()
@@ -29,6 +30,9 @@ function MySubmissionsScreen() {
 							showCompetitionDetails
 						/>
 					))}
+					{mySubmissionIds.length === 0 && (
+						<EmptyMessage message="You don't have any submissions yet. Create a submission by clicking the 'Join Competition' tab on a competition's page" />
+					)}
 				</VStack>
 			</VStack>
 		</Box>
