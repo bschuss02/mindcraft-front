@@ -15,7 +15,8 @@ function DisplayContextProvider({ children }) {
 		currentRevieweingCompetitionId,
 		setCurrentRevieweingCompetitionId,
 	] = useState(null)
-	const [selectedFiles, setSelectedFiles] = useState([])
+
+	// create competition
 	const [createCompTitle, setCreateCompTitle] = useState(
 		`Comp title ${index} `.repeat(3),
 	)
@@ -39,6 +40,14 @@ function DisplayContextProvider({ children }) {
 	)
 	const [createCompAcceptedTerms, setCreateCompAcceptedTerms] = useState(true)
 
+	// create submission
+	const [createSubDescription, setCreateSubDescription] = useState(
+		`Sub description ${index} `.repeat(10),
+	)
+	const [selectedFiles, setSelectedFiles] = useState([])
+	const [createSubHideSubmission, setCreateSubHideSubmission] = useState(false)
+	const [createSubAcceptedTerms, setCreateSubAcceptedTerms] = useState(true)
+
 	const stateVars = {
 		message,
 		isStartupLoading,
@@ -53,6 +62,9 @@ function DisplayContextProvider({ children }) {
 		createCompRules,
 		createCompResources,
 		createCompAcceptedTerms,
+		createSubDescription,
+		createSubHideSubmission,
+		createSubAcceptedTerms,
 	}
 	const stateSetters = {
 		setMessage,
@@ -68,6 +80,9 @@ function DisplayContextProvider({ children }) {
 		setCreateCompRules,
 		setCreateCompResources,
 		setCreateCompAcceptedTerms,
+		setCreateSubDescription,
+		setCreateSubHideSubmission,
+		setCreateSubAcceptedTerms,
 	}
 	return (
 		<DisplayContext.Provider value={{ ...stateVars, ...stateSetters }}>
