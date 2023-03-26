@@ -48,6 +48,9 @@ function DisplayContextProvider({ children }) {
 	const [createSubHideSubmission, setCreateSubHideSubmission] = useState(false)
 	const [createSubAcceptedTerms, setCreateSubAcceptedTerms] = useState(true)
 
+	// choosing winners
+	const [winningSubmissionId, setWinningSubmissionId] = useState(null)
+
 	const stateVars = {
 		message,
 		isStartupLoading,
@@ -65,6 +68,7 @@ function DisplayContextProvider({ children }) {
 		createSubDescription,
 		createSubHideSubmission,
 		createSubAcceptedTerms,
+		winningSubmissionId,
 	}
 	const stateSetters = {
 		setMessage,
@@ -83,6 +87,7 @@ function DisplayContextProvider({ children }) {
 		setCreateSubDescription,
 		setCreateSubHideSubmission,
 		setCreateSubAcceptedTerms,
+		setWinningSubmissionId,
 	}
 	return (
 		<DisplayContext.Provider value={{ ...stateVars, ...stateSetters }}>

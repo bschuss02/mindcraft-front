@@ -19,6 +19,7 @@ import { CompetitionContext } from "../../context/CompetitionContext"
 import { formatDate } from "../../util/date/formatDate"
 import { FileItem } from "./FileItem"
 import { mapStatus } from "../../util/status/mapStatus"
+import { DisplayContext } from "../../context/DisplayContext"
 
 function SubmissionItem({
 	submissionId,
@@ -27,6 +28,9 @@ function SubmissionItem({
 	selectingWinner = false,
 }) {
 	const navigation = useNavigation()
+	const { winningSubmissionId, setWinningSubmissionId } = useContext(
+		DisplayContext,
+	)
 	const { submissionsMap } = useContext(SubmissionContext)
 	const { competitionsMap } = useContext(CompetitionContext)
 	const submissionData = submissionsMap[submissionId]
@@ -51,6 +55,21 @@ function SubmissionItem({
 		resources,
 		createdAt,
 	} = competitionData
+
+	let isWinner
+	if (winningSubmissionId) {
+		isWinner = winningSubmissionId === submissionId
+	} else {
+		isWinner = result === "winner"
+	}
+
+	function handleChangeIsWinnerCheckbox(nextValue) {
+		if (nextValue) {
+			setWinningSubmissionId(submissionId)
+		} else {
+			setWinningSubmissionId(null)
+		}
+	}
 
 	return (
 		<Pressable _hover={{ bg: "c1.800" }} p="2">
@@ -125,7 +144,10 @@ function SubmissionItem({
 					<VStack alignItems="flex-end" space="2">
 						<HStack space="2" alignItems="center">
 							<Heading fontSize="17px">Choose winner</Heading>
-							<Checkbox />
+							<Checkbox
+								isChecked={isWinner}
+								onChange={handleChangeIsWinnerCheckbox}
+							/>
 						</HStack>
 					</VStack>
 				)}
