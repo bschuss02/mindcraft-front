@@ -115,6 +115,7 @@ function JoinCompetitionScreen() {
 			screen: "viewCompetitionTabNav",
 			params: { screen: "competitionSubmissionsScreen" },
 		})
+		reset()
 	}
 
 	return (
