@@ -7,7 +7,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 const DisplayContext = createContext()
 
 function DisplayContextProvider({ children }) {
-	const index = 0
+	const index = 1
 	const [isStartupLoading, setIsStartupLoading] = useState(false)
 	const [message, setMessage] = useState("")
 	const [currentCompetitionId, setCurrentCompetitionId] = useState(null)
@@ -30,7 +30,7 @@ function DisplayContextProvider({ children }) {
 		`$${index + 1000} `,
 	)
 	const [createCompDeadline, setCreateCompDeadline] = useState(
-		`04/${index + 1}/2023}`,
+		`04/${index + 1}/2023`,
 	)
 	const [createCompRules, setCreateCompRules] = useState(
 		`Comp rules ${index} `.repeat(10),

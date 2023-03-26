@@ -6,6 +6,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { DisplayContext } from "../../context/DisplayContext"
 import { SubmissionItem } from "../../components/submission/SubmissionItem"
+import { EmptyMessage } from "../../components/competitions/EmptyMessage"
 
 function CompetitionSubmissionsScreen() {
 	const navigation = useNavigation()
@@ -28,16 +29,21 @@ function CompetitionSubmissionsScreen() {
 		subs,
 	} = competitionData
 	const submissionIds = subs.map((sub) => sub._id)
+	const hasSubmissions = submissionIds ? submissionIds.length > 0 : false
+	console.log("hasSubmissions", hasSubmissions)
 	return (
 		<Box variant="screen" mt="33">
 			<VStack space="4">
-				{submissionIds &&
+				{hasSubmissions &&
 					submissionIds.map((submissionId, index) => (
 						<SubmissionItem
 							key={index.toString()}
 							submissionId={submissionId}
 						/>
 					))}
+				{!hasSubmissions && (
+					<EmptyMessage message="This competition has no submissios yet. Be the first to create a submission by clicking on the 'Join Competition' tab" />
+				)}
 			</VStack>
 		</Box>
 	)
