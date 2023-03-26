@@ -54,7 +54,7 @@ function LearnScreen() {
             date: new Date("March 22, 2023"),
         },
         {
-            title: "The Importance of Using Text Wegihts in Midjourney V5",
+            title: "The Importance of Using Text Weights in Midjourney V5",
             subtitle:
                 "AI Art Creators. Elevate your prompts with V5’s latest approach.",
             coverPhoto:

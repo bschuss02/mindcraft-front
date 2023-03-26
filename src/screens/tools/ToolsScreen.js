@@ -36,7 +36,7 @@ function ToolsScreen() {
         {
             title: "Riffusion",
             subtitle:
-                "Riffusion offers a straightforward approach to music generation through the use of Stable Diffusion v1.5, which generates images of sound waves, which are then converted into music. The model is merely fine-tuned with images of spectrograms, rather than retrained, the developers write.",
+                "Riffusion offers a straightforward approach to music generation through the use of Stable Diffusion v1.5, which generates images of sound waves, which are then converted into music. The model is merely fine-tuned with images of spectrograms.",
             coverPhoto:
                 "https://replicate.delivery/pbxt/Xkr2iGJhHkJ3K9j5B7Xa1sSbRQmPZ7d8R17WXsalRbnjbnCE/spectrogram.jpg",
             url: "https://replicate.com/riffusion/riffusion",
