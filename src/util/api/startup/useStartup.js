@@ -9,9 +9,7 @@ import { DisplayContext } from "../../../context/DisplayContext"
 function useStartup() {
 	const navigation = useNavigation()
 	const { currentUser, setCurrentUser } = useContext(UserContext)
-	const { message, setMessage, setIsStartupLoading } = useContext(
-		DisplayContext,
-	)
+	const { setMessage, setIsStartupLoading } = useContext(DisplayContext)
 
 	async function callStartup() {
 		setIsStartupLoading(true)
@@ -24,9 +22,8 @@ function useStartup() {
 			}
 		} else {
 			const { data, error } = await apiCall("GET", "startup/withuser", {})
-			const { user, message } = data
+			const { user } = data
 			setCurrentUser(user)
-			setMessage(message)
 			if (error) {
 				showMyToast(error)
 			}

@@ -15,9 +15,67 @@ import {
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { BackButton } from "../../components/bars/BackButton"
+import { DisplayContext } from "../../context/DisplayContext"
+import apiCall from "../../util/api/apiCall"
+import showMyToast from "../../util/api/showMyToast"
 
 function CreateCompetitionScreen() {
 	const navigation = useNavigation()
+	const {
+		createCompTitle,
+		createCompSubtitle,
+		createCompOverview,
+		createCompPrizeMoney,
+		createCompDeadline,
+		createCompRules,
+		createCompResources,
+		createCompAcceptedTerms,
+		setCreateCompTitle,
+		setCreateCompSubtitle,
+		setCreateCompOverview,
+		setCreateCompPrizeMoney,
+		setCreateCompDeadline,
+		setCreateCompRules,
+		setCreateCompResources,
+		setCreateCompAcceptedTerms,
+	} = useContext(DisplayContext)
+
+	async function handleCreateCompetition() {
+		let prizeMoney, deadline
+		try {
+			prizeMoney = parseInt(
+				createCompPrizeMoney
+					.replace("$", "")
+					.replace(",", "")
+					.replace(" ", ""),
+			)
+			const dateParts = createCompDeadline.split("/")
+			console.log("dateParts", dateParts)
+			deadline = new Date(
+				parseInt(dateParts[2]),
+				parseInt(dateParts[1]) - 1,
+				parseInt(dateParts[0]),
+			)
+		} catch (error) {
+			return showMyToast(
+				"Please check your input values for Prize Money and deadline",
+			)
+		}
+		const createCompData = {
+			title: createCompTitle,
+			subtitle: createCompSubtitle,
+			overview: createCompOverview,
+			prizeMoney,
+			deadline,
+			rules: createCompRules,
+			resources: createCompResources,
+			acceptedTerms: createCompAcceptedTerms,
+		}
+		const { data, error } = await apiCall("POST", "comps", createCompData)
+		if (error) return showMyToast(error)
+		console.log("data", data)
+	}
+
 	return (
 		<Box variant="screen">
 			<ScrollView>
@@ -45,6 +103,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompTitle}
+							onChangeText={setCreateCompTitle}
 							h="48px"
 							totalLines={2}
 							ml="1px"
@@ -59,6 +119,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompSubtitle}
+							onChangeText={setCreateCompSubtitle}
 							h="90px"
 							totalLines={4}
 							ml="1px"
@@ -75,6 +137,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompOverview}
+							onChangeText={setCreateCompOverview}
 							h="250px"
 							totalLines={4}
 							ml="1px"
@@ -89,6 +153,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompPrizeMoney}
+							onChangeText={setCreateCompPrizeMoney}
 							h="48px"
 							totalLines={4}
 							ml="1px"
@@ -104,6 +170,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompDeadline}
+							onChangeText={setCreateCompDeadline}
 							h="48px"
 							totalLines={4}
 							ml="1px"
@@ -119,6 +187,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompRules}
+							onChangeText={setCreateCompRules}
 							h="90px"
 							totalLines={4}
 							ml="1px"
@@ -134,6 +204,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompResources}
+							onChangeText={setCreateCompResources}
 							h="90px"
 							totalLines={4}
 							ml="1px"
@@ -144,7 +216,8 @@ function CreateCompetitionScreen() {
 						<Heading fontSize="30px">Agree to Terms and Conditions</Heading>
 						<HStack space="2">
 							<Checkbox
-								value={true}
+								isChecked={createCompAcceptedTerms}
+								onChange={(nextValue) => setCreateCompAcceptedTerms(nextValue)}
 								accessibilityLabel="Agree to terms and conditions"
 							/>
 							<Text>
@@ -153,7 +226,7 @@ function CreateCompetitionScreen() {
 						</HStack>
 					</VStack>
 					<VStack>
-						<Button>
+						<Button onPress={handleCreateCompetition}>
 							<Text>Create Contest</Text>
 						</Button>
 					</VStack>

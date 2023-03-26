@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { CompetitionItem } from "../../components/competitions/CompetitionItem"
+import { EmptyMessage } from "../../components/competitions/EmptyMessage"
 
 function MyCompetitionsScreen() {
 	const navigation = useNavigation()
@@ -27,6 +28,9 @@ function MyCompetitionsScreen() {
 							showButtons
 						/>
 					))}
+					{myCompetitionIds.length === 0 && (
+						<EmptyMessage message="You haven't created any competitions yet. Create a competition by clicking the 'Create' button on the 'Competitions' page" />
+					)}
 				</VStack>
 			</VStack>
 		</Box>
