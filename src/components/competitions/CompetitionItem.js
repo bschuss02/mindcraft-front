@@ -16,6 +16,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { formatDate } from "../../util/date/formatDate"
 import { CompetitionContext } from "../../context/CompetitionContext"
 import { DisplayContext } from "../../context/DisplayContext"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 function CompetitionItem({ competitionId, showButtons = false }) {
 	const navigation = useNavigation()

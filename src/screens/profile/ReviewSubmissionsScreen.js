@@ -23,7 +23,7 @@ function ReviewSubmissionsScreen() {
 	const { currentRevieweingCompetitionId } = useContext(DisplayContext)
 	const competitionData = competitionsMap[currentRevieweingCompetitionId]
 	if (!competitionData) return null
-	const { title, submissionIds } = competitionData
+	const { title, subs: submissionIds } = competitionData
 	return (
 		<Box variant="screen">
 			<ScrollView>
@@ -47,13 +47,14 @@ function ReviewSubmissionsScreen() {
 						</VStack>
 					</HStack>
 					<VStack space="6" mt="2">
-						{submissionIds.map((submissionId, index) => (
-							<SubmissionItem
-								key={index.toString()}
-								submissionId={submissionId}
-								selectingWinner
-							/>
-						))}
+						{submissionIds &&
+							submissionIds.map((submissionId, index) => (
+								<SubmissionItem
+									key={index.toString()}
+									submissionId={submissionId}
+									selectingWinner
+								/>
+							))}
 					</VStack>
 				</VStack>
 			</ScrollView>
