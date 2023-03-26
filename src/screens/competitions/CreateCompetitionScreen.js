@@ -16,6 +16,8 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { BackButton } from "../../components/bars/BackButton"
 import { DisplayContext } from "../../context/DisplayContext"
+import apiCall from "../../util/api/apiCall"
+import showMyToast from "../../util/api/showMyToast"
 
 function CreateCompetitionScreen() {
 	const navigation = useNavigation()
@@ -37,6 +39,44 @@ function CreateCompetitionScreen() {
 		setCreateCompResources,
 		setCreateCompAcceptedTerms,
 	} = useContext(DisplayContext)
+
+	async function handleCreateCompetition() {
+		let prizeMoney, deadline
+		try {
+			prizeMoney = parseInt(
+				createCompPrizeMoney
+					.replace("$", "")
+					.replace(",", "")
+					.replace(" ", ""),
+			)
+			const dateParts = createCompDeadline.split("/")
+			console.log("dateParts", dateParts)
+			deadline = new Date(
+				parseInt(dateParts[2]),
+				parseInt(dateParts[1]) - 1,
+				parseInt(dateParts[0]),
+			)
+		} catch (error) {
+			return showMyToast(
+				"Please check your input values for Prize Money and deadline",
+			)
+		}
+		console.log("deadline", deadline)
+		const createCompData = {
+			title: createCompTitle,
+			subtitle: createCompSubtitle,
+			overview: createCompOverview,
+			prizeMoney,
+			deadline,
+			rules: createCompRules,
+			resources: createCompResources,
+			acceptedTerms: createCompAcceptedTerms,
+		}
+		const { data, error } = await apiCall("POST", "comps", createCompData)
+		if (error) return showMyToast(error)
+		console.log("data", data)
+	}
+
 	return (
 		<Box variant="screen">
 			<ScrollView>
@@ -187,7 +227,7 @@ function CreateCompetitionScreen() {
 						</HStack>
 					</VStack>
 					<VStack>
-						<Button>
+						<Button onPress={handleCreateCompetition}>
 							<Text>Create Contest</Text>
 						</Button>
 					</VStack>
