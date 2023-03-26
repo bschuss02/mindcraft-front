@@ -15,9 +15,28 @@ import {
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { BackButton } from "../../components/bars/BackButton"
+import { DisplayContext } from "../../context/DisplayContext"
 
 function CreateCompetitionScreen() {
 	const navigation = useNavigation()
+	const {
+		createCompTitle,
+		createCompSubtitle,
+		createCompOverview,
+		createCompPrizeMoney,
+		createCompDeadline,
+		createCompRules,
+		createCompResources,
+		createCompAcceptedTerms,
+		setCreateCompTitle,
+		setCreateCompSubtitle,
+		setCreateCompOverview,
+		setCreateCompPrizeMoney,
+		setCreateCompDeadline,
+		setCreateCompRules,
+		setCreateCompResources,
+		setCreateCompAcceptedTerms,
+	} = useContext(DisplayContext)
 	return (
 		<Box variant="screen">
 			<ScrollView>
@@ -45,6 +64,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompTitle}
+							onChangeText={setCreateCompTitle}
 							h="48px"
 							totalLines={2}
 							ml="1px"
@@ -59,6 +80,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompSubtitle}
+							onChangeText={setCreateCompSubtitle}
 							h="90px"
 							totalLines={4}
 							ml="1px"
@@ -75,6 +98,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompOverview}
+							onChangeText={setCreateCompOverview}
 							h="250px"
 							totalLines={4}
 							ml="1px"
@@ -89,6 +114,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompPrizeMoney}
+							onChangeText={setCreateCompPrizeMoney}
 							h="48px"
 							totalLines={4}
 							ml="1px"
@@ -104,6 +131,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompDeadline}
+							onChangeText={setCreateCompDeadline}
 							h="48px"
 							totalLines={4}
 							ml="1px"
@@ -119,6 +148,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompRules}
+							onChangeText={setCreateCompRules}
 							h="90px"
 							totalLines={4}
 							ml="1px"
@@ -134,6 +165,8 @@ function CreateCompetitionScreen() {
 							</Heading>
 						</VStack>
 						<TextArea
+							value={createCompResources}
+							onChangeText={setCreateCompResources}
 							h="90px"
 							totalLines={4}
 							ml="1px"
@@ -144,7 +177,8 @@ function CreateCompetitionScreen() {
 						<Heading fontSize="30px">Agree to Terms and Conditions</Heading>
 						<HStack space="2">
 							<Checkbox
-								value={true}
+								isChecked={createCompAcceptedTerms}
+								onChange={(nextValue) => setCreateCompAcceptedTerms(nextValue)}
 								accessibilityLabel="Agree to terms and conditions"
 							/>
 							<Text>
