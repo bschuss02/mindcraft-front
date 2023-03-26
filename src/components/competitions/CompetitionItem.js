@@ -79,6 +79,7 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 		const newCompetitionsMap = { ...competitionsMap }
 		delete newCompetitionsMap[competitionId]
 		setCompetitionsMap(newCompetitionsMap)
+		navigation.navigate("competitions", { screen: "competitionsScreen" })
 	}
 
 	return (
@@ -122,7 +123,7 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 							</VStack>
 							<VStack alignItems="flex-end">
 								<Button onPress={handleDeleteCompetition}>
-									<Text>Delete Competitions</Text>
+									<Text>Delete Competition</Text>
 								</Button>
 							</VStack>
 						</VStack>

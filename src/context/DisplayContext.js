@@ -7,7 +7,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 const DisplayContext = createContext()
 
 function DisplayContextProvider({ children }) {
-	const index = 2
+	const index = 6
 	const [isStartupLoading, setIsStartupLoading] = useState(false)
 	const [message, setMessage] = useState("")
 	const [currentCompetitionId, setCurrentCompetitionId] = useState(null)
