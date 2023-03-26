@@ -17,16 +17,70 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import * as DocumentPicker from "expo-document-picker"
 import { DisplayContext } from "../../context/DisplayContext"
 import { UploadFileItem } from "../../components/submission/UploadFileItem"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import showMyToast from "../../util/api/showMyToast"
 
 function JoinCompetitionScreen() {
 	const navigation = useNavigation()
-	const { selectedFiles, setSelectedFiles } = useContext(DisplayContext)
+	const {
+		selectedFiles,
+		createSubDescription,
+		createSubHideSubmission,
+		createSubAcceptedTerms,
+		setSelectedFiles,
+		setCreateSubDescription,
+		setCreateSubHideSubmission,
+		setCreateSubAcceptedTerms,
+		currentCompetitionId,
+	} = useContext(DisplayContext)
 
 	async function handleAddNewFiles() {
 		const result = await DocumentPicker.getDocumentAsync()
 		if (result.type === "success") {
 			setSelectedFiles([...selectedFiles, result])
 		}
+	}
+
+	async function handleCreateSubmission() {
+		const createSubInfo = {
+			competitionId: currentCompetitionId,
+			description: createSubDescription,
+			hideSubmission: createSubHideSubmission,
+			acceptedTerms: createSubAcceptedTerms,
+		}
+		const files = selectedFiles.map((fileData) => ({
+			uri: fileData.uri,
+			fileName: fileData.name,
+			size: fileData.size,
+			mimeType: fileData.mimeType,
+			file: fileData.file,
+		}))
+		files.forEach((file) => {
+			if (file.size > 5e6) {
+				return showMyToast("File size must be less than 5MB")
+			}
+		})
+		let formData = new FormData()
+		formData.append("subMetadata", JSON.stringify(createSubInfo))
+		files.forEach((file) => {
+			formData.append("files", file.file)
+		})
+		let URL = "http://localhost:3000/subs/"
+		const authToken = await AsyncStorage.getItem("authToken")
+		const config = {
+			method: "POST",
+			body: formData,
+			headers: {
+				"x-auth-token": authToken,
+			},
+		}
+		const res = await fetch(URL, config)
+		if (res.status !== 200) {
+			const error = await res.text()
+			return showMyToast(error)
+		}
+		const data = await res.json()
+		console.log("data", data)
 	}
 
 	return (
@@ -41,7 +95,12 @@ function JoinCompetitionScreen() {
 								submission
 							</Heading>
 						</VStack>
-						<TextArea ml="1px" placeholder="My submission is..." />
+						<TextArea
+							value={createSubDescription}
+							onChangeText={setCreateSubDescription}
+							ml="1px"
+							placeholder="My submission is..."
+						/>
 					</VStack>
 					<VStack space="3">
 						<VStack>
@@ -76,7 +135,8 @@ function JoinCompetitionScreen() {
 						<Heading fontSize="30px">Hide Submission</Heading>
 						<HStack space="2">
 							<Checkbox
-								value={true}
+								isChecked={createSubHideSubmission}
+								onChange={setCreateSubHideSubmission}
 								accessibilityLabel="Hide submission from being viewed by other competitors"
 							/>
 							<Text>
@@ -89,7 +149,8 @@ function JoinCompetitionScreen() {
 						<Heading fontSize="30px">Agree to Terms and Conditions</Heading>
 						<HStack space="2">
 							<Checkbox
-								value={true}
+								isChecked={createSubAcceptedTerms}
+								onChange={setCreateSubAcceptedTerms}
 								accessibilityLabel="Agree to terms and conditions"
 							/>
 							<Text>
@@ -99,7 +160,7 @@ function JoinCompetitionScreen() {
 						</HStack>
 					</VStack>
 					<VStack alignItems="center">
-						<Button>
+						<Button onPress={handleCreateSubmission}>
 							<Text>Submit to Competition</Text>
 						</Button>
 					</VStack>

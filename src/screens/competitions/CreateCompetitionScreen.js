@@ -18,9 +18,18 @@ import { BackButton } from "../../components/bars/BackButton"
 import { DisplayContext } from "../../context/DisplayContext"
 import apiCall from "../../util/api/apiCall"
 import showMyToast from "../../util/api/showMyToast"
+import { CompetitionContext } from "../../context/CompetitionContext"
 
 function CreateCompetitionScreen() {
 	const navigation = useNavigation()
+	const {
+		competitionsMap,
+		competitionFeedIds,
+		myCompetitionIds,
+		setCompetitionsMap,
+		setCompetitionFeedIds,
+		setMyCompetitionIds,
+	} = useContext(CompetitionContext)
 	const {
 		createCompTitle,
 		createCompSubtitle,
@@ -40,6 +49,17 @@ function CreateCompetitionScreen() {
 		setCreateCompAcceptedTerms,
 	} = useContext(DisplayContext)
 
+	function reset() {
+		setCreateCompTitle("")
+		setCreateCompSubtitle("")
+		setCreateCompOverview("")
+		setCreateCompPrizeMoney("")
+		setCreateCompDeadline("")
+		setCreateCompRules("")
+		setCreateCompResources("")
+		setCreateCompAcceptedTerms(false)
+	}
+
 	async function handleCreateCompetition() {
 		let prizeMoney, deadline
 		try {
@@ -50,7 +70,6 @@ function CreateCompetitionScreen() {
 					.replace(" ", ""),
 			)
 			const dateParts = createCompDeadline.split("/")
-			console.log("dateParts", dateParts)
 			deadline = new Date(
 				parseInt(dateParts[2]),
 				parseInt(dateParts[1]) - 1,
@@ -73,7 +92,16 @@ function CreateCompetitionScreen() {
 		}
 		const { data, error } = await apiCall("POST", "comps", createCompData)
 		if (error) return showMyToast(error)
-		console.log("data", data)
+		showMyToast("Competition created")
+		const { comp } = data
+		const compId = comp._id
+		setCompetitionsMap({ ...competitionsMap, [compId]: comp })
+		setCompetitionFeedIds([compId, ...competitionFeedIds])
+		setMyCompetitionIds([compId, ...myCompetitionIds])
+		navigation.navigate("competitions", {
+			screen: "competitionsScreen",
+		})
+		reset()
 	}
 
 	return (

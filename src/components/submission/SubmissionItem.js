@@ -31,10 +31,10 @@ function SubmissionItem({
 	const { competitionsMap } = useContext(CompetitionContext)
 	const submissionData = submissionsMap[submissionId]
 	if (!submissionData) return null
-	const { competitionId, creator, files, description, result } = submissionData
+	const { competition, creator, files, description, result } = submissionData
+	const competitionId = competition._id
 	const competitionData = competitionsMap[competitionId]
 	const {
-		organizerId,
 		coverImage,
 		title,
 		subtitle,

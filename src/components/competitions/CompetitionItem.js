@@ -24,6 +24,7 @@ function CompetitionItem({ competitionId, showButtons = false }) {
 		setCurrentCompetitionId,
 		setCurrentRevieweingCompetitionId,
 	} = useContext(DisplayContext)
+	if (!competitionsMap) return null
 	const competitionData = competitionsMap[competitionId]
 	if (!competitionData) return null
 	const {
