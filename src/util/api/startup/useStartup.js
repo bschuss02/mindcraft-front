@@ -43,7 +43,6 @@ function useStartup() {
 				return showMyToast(error)
 			}
 			const { user, allCompIds, compsMap, myCompIds, mySubIds, subsMap } = data
-			conosle.log("allCompsIds", allCompIds)
 			setCurrentUser(user)
 			setCompetitionsMap(compsMap)
 			setCompetitionFeedIds(allCompIds)
