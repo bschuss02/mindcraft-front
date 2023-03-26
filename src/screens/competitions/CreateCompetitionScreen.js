@@ -61,7 +61,6 @@ function CreateCompetitionScreen() {
 				"Please check your input values for Prize Money and deadline",
 			)
 		}
-		console.log("deadline", deadline)
 		const createCompData = {
 			title: createCompTitle,
 			subtitle: createCompSubtitle,
