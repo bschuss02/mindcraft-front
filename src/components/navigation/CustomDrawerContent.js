@@ -10,6 +10,7 @@ import {
 	ScrollView,
 	Spinner,
 	Heading,
+	Image,
 } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
@@ -27,9 +28,12 @@ function CustomDrawerContent(props) {
 	return (
 		<ScrollView bg="c1.900">
 			<VStack p="4" space="2">
-				<Heading ml="2" color="c3.500">
-					MindCraft
-				</Heading>
+				<HStack alignItems="center">
+					<Image source={require("../../../assets/2.png")} w="10" h="10" />
+					<Heading ml="2" color="c3.500">
+						MindCraft
+					</Heading>
+				</HStack>
 				{routes.map((route, index) => (
 					<CustomDrawerItem
 						key={index.toString()}
