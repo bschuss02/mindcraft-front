@@ -31,7 +31,7 @@ function CustomDrawerContent(props) {
 				<HStack alignItems="center">
 					<Image source={require("../../../assets/2.png")} w="10" h="10" />
 					<Heading fontSize="28px" ml="2" color="c3.500">
-						MindCraft
+						CrowdCraft
 					</Heading>
 				</HStack>
 				{routes.map((route, index) => (
